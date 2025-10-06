@@ -27,6 +27,8 @@
             --purple: #9d4edd;
             --orange: #ff6d00;
             --animation-speed: 0.4s;
+            --font-size: 100%;
+            --cursor-size: normal;
         }
 
         body {
@@ -36,6 +38,8 @@
             overflow-x: hidden;
             min-height: 100vh;
             scroll-behavior: smooth;
+            font-size: var(--font-size);
+            cursor: var(--cursor-size);
         }
 
         /* ANIMACIÓN DE CARGA */
@@ -527,11 +531,48 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reset-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .reset-btn:hover::before {
+            left: 100%;
         }
 
         .reset-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(255, 68, 68, 0.4);
+        }
+
+        /* BOTÓN RESET COLORS */
+        .reset-colors-btn {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            color: var(--darkest);
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .reset-colors-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
         }
 
         @keyframes gradientFlow {
@@ -1147,6 +1188,165 @@
             opacity: 1;
         }
 
+        /* MODAL DE CONFIRMACIÓN */
+        .confirmation-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .confirmation-modal.active {
+            display: flex;
+        }
+
+        .confirmation-content {
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(30px);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            border: 3px solid var(--warning);
+            box-shadow: 0 30px 80px rgba(255, 68, 68, 0.6);
+            position: relative;
+            animation: slideDown 0.4s ease;
+            text-align: center;
+        }
+
+        .confirmation-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+
+        .confirmation-text {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #ccccff;
+            line-height: 1.6;
+        }
+
+        .confirmation-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .confirmation-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .confirmation-cancel {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+
+        .confirmation-cancel:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .confirmation-confirm {
+            background: linear-gradient(45deg, var(--warning), #ff6666);
+            color: white;
+            border: 2px solid var(--warning);
+        }
+
+        .confirmation-confirm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 68, 68, 0.4);
+        }
+
+        /* NOTIFICACIONES */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--accent);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.5);
+            z-index: 10003;
+            transform: translateX(400px);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-width: 350px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .notification-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .notification-message {
+            color: #ccccff;
+            text-align: center;
+        }
+
+        /* ESTILOS PARA REDUCIR ANIMACIONES */
+        body.reduce-animations * {
+            animation-duration: 0.01s !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01s !important;
+        }
+
+        body.reduce-animations .settings-btn,
+        body.reduce-animations .logo-img {
+            animation: none !important;
+        }
+
+        /* ESTILOS PARA ALTO CONTRASTE */
+        body.high-contrast {
+            --primary: #ffffff;
+            --secondary: #ffff00;
+            --accent: #00ffff;
+            --darkest: #000000;
+            --darker: #111111;
+            --dark: #222222;
+        }
+
+        body.high-contrast * {
+            text-shadow: 0 0 2px black;
+        }
+
+        /* ESTILOS PARA CURSOR GRANDE */
+        body.large-cursor {
+            --cursor-size: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="white" stroke="%2300ffff" stroke-width="2"/></svg>'), auto;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .nav-container {
@@ -1181,6 +1381,10 @@
             .booster-grid,
             .staff-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .confirmation-buttons {
+                flex-direction: column;
             }
         }
     </style>
@@ -1221,12 +1425,6 @@
                 <div class="settings-tab" data-tab="accesibilidad">
                     <i class="fas fa-universal-access"></i> Accesibilidad
                 </div>
-                <div class="settings-tab" data-tab="audio">
-                    <i class="fas fa-volume-up"></i> Audio
-                </div>
-                <div class="settings-tab" data-tab="avanzado">
-                    <i class="fas fa-cogs"></i> Avanzado
-                </div>
             </div>
             
             <!-- CONTENIDO DE PESTAÑAS -->
@@ -1242,7 +1440,7 @@
                             <div class="settings-option-title">Reducir Animaciones</div>
                             <div class="settings-option-desc">Mejora el rendimiento reduciendo efectos visuales</div>
                         </div>
-                        <div class="toggle-switch active" id="reduceAnimationsToggle" data-setting="reduce-animations">
+                        <div class="toggle-switch" id="reduceAnimationsToggle" data-setting="reduce-animations">
                             <div class="toggle-handle"></div>
                         </div>
                     </div>
@@ -1252,7 +1450,7 @@
                             <div class="settings-option-title">Modo de Bajo Consumo</div>
                             <div class="settings-option-desc">Optimiza el rendimiento para dispositivos de gama baja</div>
                         </div>
-                        <div class="toggle-switch" data-setting="low-power">
+                        <div class="toggle-switch" id="lowPowerToggle" data-setting="low-power">
                             <div class="toggle-handle"></div>
                         </div>
                     </div>
@@ -1263,29 +1461,10 @@
                             <div class="settings-option-desc">Ajusta el número de partículas en el fondo</div>
                         </div>
                         <div class="slider-container">
-                            <div class="slider" data-setting="particles">
-                                <div class="slider-track" style="width: 60%;"></div>
-                                <div class="slider-thumb" style="left: 60%;"></div>
+                            <div class="slider" id="particlesSlider" data-setting="particles">
+                                <div class="slider-track"></div>
+                                <div class="slider-thumb"></div>
                                 <div class="slider-value">60%</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="settings-option">
-                        <div class="settings-option-label">
-                            <div class="settings-option-title">Calidad de Efectos</div>
-                            <div class="settings-option-desc">Ajusta la calidad de los efectos visuales</div>
-                        </div>
-                        <div class="custom-select">
-                            <div class="select-selected">
-                                <span>Alta Calidad</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="select-items">
-                                <div>Baja Calidad</div>
-                                <div>Calidad Media</div>
-                                <div>Alta Calidad</div>
-                                <div>Calidad Ultra</div>
                             </div>
                         </div>
                     </div>
@@ -1305,7 +1484,7 @@
                             <div class="settings-option-desc">Color principal de la interfaz</div>
                         </div>
                         <div class="color-picker">
-                            <input type="color" value="#00ffff" data-setting="primary-color">
+                            <input type="color" id="primaryColor" value="#00ffff" data-setting="primary-color">
                         </div>
                     </div>
                     
@@ -1315,7 +1494,7 @@
                             <div class="settings-option-desc">Color de acento de la interfaz</div>
                         </div>
                         <div class="color-picker">
-                            <input type="color" value="#00ff88" data-setting="secondary-color">
+                            <input type="color" id="secondaryColor" value="#ff00ff" data-setting="secondary-color">
                         </div>
                     </div>
                     
@@ -1325,7 +1504,7 @@
                             <div class="settings-option-desc">Color del fondo de la página</div>
                         </div>
                         <div class="color-picker">
-                            <input type="color" value="#1a1a2e" data-setting="background-color">
+                            <input type="color" id="backgroundColor" value="#1a1a2e" data-setting="background-color">
                         </div>
                     </div>
                     
@@ -1334,17 +1513,17 @@
                             <div class="settings-option-title">Tema de Color</div>
                             <div class="settings-option-desc">Selecciona un tema predefinido</div>
                         </div>
-                        <div class="custom-select">
+                        <div class="custom-select" id="themeSelector">
                             <div class="select-selected">
                                 <span>Futurista Cian</span>
                                 <i class="fas fa-chevron-down"></i>
                             </div>
                             <div class="select-items">
-                                <div>Futurista Cian</div>
-                                <div>Neón Rosa</div>
-                                <div>Verde Tóxico</div>
-                                <div>Dorado Épico</div>
-                                <div>Púrpura Místico</div>
+                                <div data-theme="futurista">Futurista Cian</div>
+                                <div data-theme="neon">Neón Rosa</div>
+                                <div data-theme="toxico">Verde Tóxico</div>
+                                <div data-theme="dorado">Dorado Épico</div>
+                                <div data-theme="purpura">Púrpura Místico</div>
                             </div>
                         </div>
                     </div>
@@ -1354,10 +1533,14 @@
                             <div class="settings-option-title">Efectos de Partículas</div>
                             <div class="settings-option-desc">Activa/desactiva las partículas del fondo</div>
                         </div>
-                        <div class="toggle-switch active" data-setting="particles-effect">
+                        <div class="toggle-switch active" id="particlesToggle" data-setting="particles-effect">
                             <div class="toggle-handle"></div>
                         </div>
                     </div>
+
+                    <button class="reset-colors-btn" id="resetColorsBtn">
+                        <i class="fas fa-palette"></i> RESTABLECER COLORES
+                    </button>
                 </div>
             </div>
             
@@ -1373,7 +1556,7 @@
                             <div class="settings-option-title">Alto Contraste</div>
                             <div class="settings-option-desc">Mejora la legibilidad del texto</div>
                         </div>
-                        <div class="toggle-switch" data-setting="high-contrast">
+                        <div class="toggle-switch" id="highContrastToggle" data-setting="high-contrast">
                             <div class="toggle-handle"></div>
                         </div>
                     </div>
@@ -1383,7 +1566,7 @@
                             <div class="settings-option-title">Reducir Movimiento</div>
                             <div class="settings-option-desc">Minimiza las animaciones y transiciones</div>
                         </div>
-                        <div class="toggle-switch" data-setting="reduce-motion">
+                        <div class="toggle-switch" id="reduceMotionToggle" data-setting="reduce-motion">
                             <div class="toggle-handle"></div>
                         </div>
                     </div>
@@ -1394,9 +1577,9 @@
                             <div class="settings-option-desc">Ajusta el tamaño del texto para mejor legibilidad</div>
                         </div>
                         <div class="slider-container">
-                            <div class="slider" data-setting="font-size">
-                                <div class="slider-track" style="width: 75%;"></div>
-                                <div class="slider-thumb" style="left: 75%;"></div>
+                            <div class="slider" id="fontSizeSlider" data-setting="font-size">
+                                <div class="slider-track"></div>
+                                <div class="slider-thumb"></div>
                                 <div class="slider-value">Mediano</div>
                             </div>
                         </div>
@@ -1407,111 +1590,9 @@
                             <div class="settings-option-title">Cursor Grande</div>
                             <div class="settings-option-desc">Aumenta el tamaño del cursor para mejor visibilidad</div>
                         </div>
-                        <div class="toggle-switch" data-setting="large-cursor">
+                        <div class="toggle-switch" id="largeCursorToggle" data-setting="large-cursor">
                             <div class="toggle-handle"></div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="settings-tab-content" id="audio">
-                <!-- SECCIÓN AUDIO -->
-                <div class="settings-section">
-                    <h3 class="settings-section-title">
-                        <i class="fas fa-volume-up"></i> Configuración de Audio
-                    </h3>
-                    
-                    <div class="settings-option">
-                        <div class="settings-option-label">
-                            <div class="settings-option-title">Efectos de Sonido</div>
-                            <div class="settings-option-desc">Activa/desactiva los efectos de sonido</div>
-                        </div>
-                        <div class="toggle-switch active" data-setting="sound-effects">
-                            <div class="toggle-handle"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="settings-option">
-                        <div class="settings-option-label">
-                            <div class="settings-option-title">Volumen de Efectos</div>
-                            <div class="settings-option-desc">Ajusta el volumen de los efectos de sonido</div>
-                        </div>
-                        <div class="slider-container">
-                            <div class="slider" data-setting="effects-volume">
-                                <div class="slider-track" style="width: 80%;"></div>
-                                <div class="slider-thumb" style="left: 80%;"></div>
-                                <div class="slider-value">80%</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="settings-option">
-                        <div class="settings-option-label">
-                            <div class="settings-option-title">Música de Fondo</div>
-                            <div class="settings-option-desc">Activa/desactiva la música ambiental</div>
-                        </div>
-                        <div class="toggle-switch" data-setting="background-music">
-                            <div class="toggle-handle"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="settings-option">
-                        <div class="settings-option-label">
-                            <div class="settings-option-title">Volumen de Música</div>
-                            <div class="settings-option-desc">Ajusta el volumen de la música de fondo</div>
-                        </div>
-                        <div class="slider-container">
-                            <div class="slider" data-setting="music-volume">
-                                <div class="slider-track" style="width: 50%;"></div>
-                                <div class="slider-thumb" style="left: 50%;"></div>
-                                <div class="slider-value">50%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="settings-tab-content" id="avanzado">
-                <!-- SECCIÓN AVANZADO -->
-                <div class="settings-section">
-                    <h3 class="settings-section-title">
-                        <i class="fas fa-cogs"></i> Configuraciones Avanzadas
-                    </h3>
-                    
-                    <div class="settings-option">
-                        <div class="settings-option-label">
-                            <div class="settings-option-title">Modo Desarrollador</div>
-                            <div class="settings-option-desc">Activa herramientas de desarrollo</div>
-                        </div>
-                        <div class="toggle-switch" data-setting="developer-mode">
-                            <div class="toggle-handle"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="settings-option">
-                        <div class="settings-option-label">
-                            <div class="settings-option-title">Mostrar FPS</div>
-                            <div class="settings-option-desc">Muestra los frames por segundo</div>
-                        </div>
-                        <div class="toggle-switch" data-setting="show-fps">
-                            <div class="toggle-handle"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="settings-option">
-                        <div class="settings-option-label">
-                            <div class="settings-option-title">Limpiar Caché</div>
-                            <div class="settings-option-desc">Elimina datos temporales del navegador</div>
-                        </div>
-                        <button class="comprar-btn" style="background: var(--warning); color: white;">Limpiar Ahora</button>
-                    </div>
-                    
-                    <div class="settings-option">
-                        <div class="settings-option-label">
-                            <div class="settings-option-title">Exportar Configuración</div>
-                            <div class="settings-option-desc">Guarda tu configuración actual</div>
-                        </div>
-                        <button class="comprar-btn" style="background: var(--accent); color: var(--darkest);">Exportar</button>
                     </div>
                 </div>
             </div>
@@ -1521,6 +1602,27 @@
                 <i class="fas fa-undo"></i> RESTABLECER CONFIGURACIÓN POR DEFECTO
             </button>
         </div>
+    </div>
+
+    <!-- MODAL DE CONFIRMACIÓN -->
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="confirmation-content">
+            <h2 class="confirmation-title">¿ESTÁS SEGURO?</h2>
+            <p class="confirmation-text">Esta acción restablecerá todas las configuraciones a sus valores predeterminados y no se puede deshacer.</p>
+            <div class="confirmation-buttons">
+                <button class="confirmation-btn confirmation-cancel" id="cancelReset">CANCELAR</button>
+                <button class="confirmation-btn confirmation-confirm" id="confirmReset">SÍ, RESTABLECER TODO</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICACIÓN -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h3 class="notification-title">CONFIGURACIÓN GUARDADA</h3>
+        <p class="notification-message">Tus cambios se han aplicado correctamente</p>
     </div>
 
     <!-- LOADING BAR -->
@@ -1876,11 +1978,175 @@
             }, 2000);
         }
 
+        // MOSTRAR NOTIFICACIÓN
+        function showNotification(title, message) {
+            const notification = document.getElementById('notification');
+            notification.querySelector('.notification-title').textContent = title;
+            notification.querySelector('.notification-message').textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // GUARDAR CONFIGURACIÓN EN LOCALSTORAGE
+        function saveSettings() {
+            const settings = {
+                primaryColor: document.getElementById('primaryColor').value,
+                secondaryColor: document.getElementById('secondaryColor').value,
+                backgroundColor: document.getElementById('backgroundColor').value,
+                reduceAnimations: document.getElementById('reduceAnimationsToggle').classList.contains('active'),
+                lowPower: document.getElementById('lowPowerToggle').classList.contains('active'),
+                particles: document.querySelector('#particlesSlider .slider-track').style.width,
+                highContrast: document.getElementById('highContrastToggle').classList.contains('active'),
+                reduceMotion: document.getElementById('reduceMotionToggle').classList.contains('active'),
+                fontSize: document.querySelector('#fontSizeSlider .slider-track').style.width,
+                largeCursor: document.getElementById('largeCursorToggle').classList.contains('active'),
+                particlesEffect: document.getElementById('particlesToggle').classList.contains('active'),
+                theme: document.querySelector('#themeSelector .select-selected span').textContent
+            };
+            
+            localStorage.setItem('chilenosRP_settings', JSON.stringify(settings));
+            showNotification('CONFIGURACIÓN GUARDADA', 'Tus cambios se han aplicado correctamente');
+        }
+
+        // CARGAR CONFIGURACIÓN DESDE LOCALSTORAGE
+        function loadSettings() {
+            const savedSettings = localStorage.getItem('chilenosRP_settings');
+            
+            if (savedSettings) {
+                const settings = JSON.parse(savedSettings);
+                
+                // Aplicar configuración guardada
+                document.getElementById('primaryColor').value = settings.primaryColor;
+                document.getElementById('secondaryColor').value = settings.secondaryColor;
+                document.getElementById('backgroundColor').value = settings.backgroundColor;
+                
+                if (settings.reduceAnimations) {
+                    document.getElementById('reduceAnimationsToggle').classList.add('active');
+                    document.body.classList.add('reduce-animations');
+                }
+                
+                if (settings.lowPower) {
+                    document.getElementById('lowPowerToggle').classList.add('active');
+                }
+                
+                if (settings.particles) {
+                    document.querySelector('#particlesSlider .slider-track').style.width = settings.particles;
+                    document.querySelector('#particlesSlider .slider-thumb').style.left = settings.particles;
+                    document.querySelector('#particlesSlider .slider-value').textContent = settings.particles;
+                }
+                
+                if (settings.highContrast) {
+                    document.getElementById('highContrastToggle').classList.add('active');
+                    document.body.classList.add('high-contrast');
+                }
+                
+                if (settings.reduceMotion) {
+                    document.getElementById('reduceMotionToggle').classList.add('active');
+                }
+                
+                if (settings.fontSize) {
+                    document.querySelector('#fontSizeSlider .slider-track').style.width = settings.fontSize;
+                    document.querySelector('#fontSizeSlider .slider-thumb').style.left = settings.fontSize;
+                    updateFontSize(settings.fontSize);
+                }
+                
+                if (settings.largeCursor) {
+                    document.getElementById('largeCursorToggle').classList.add('active');
+                    document.body.classList.add('large-cursor');
+                }
+                
+                if (settings.particlesEffect !== undefined && !settings.particlesEffect) {
+                    document.getElementById('particlesToggle').classList.remove('active');
+                    document.getElementById('particles-js').style.display = 'none';
+                }
+                
+                if (settings.theme) {
+                    document.querySelector('#themeSelector .select-selected span').textContent = settings.theme;
+                    applyTheme(settings.theme);
+                }
+                
+                // Aplicar colores
+                applyColors();
+            }
+        }
+
+        // APLICAR COLORES
+        function applyColors() {
+            const primaryColor = document.getElementById('primaryColor').value;
+            const secondaryColor = document.getElementById('secondaryColor').value;
+            const backgroundColor = document.getElementById('backgroundColor').value;
+            
+            document.documentElement.style.setProperty('--primary', primaryColor);
+            document.documentElement.style.setProperty('--secondary', secondaryColor);
+            document.documentElement.style.setProperty('--accent', secondaryColor);
+            document.documentElement.style.setProperty('--darkest', backgroundColor);
+        }
+
+        // APLICAR TEMA
+        function applyTheme(theme) {
+            switch(theme) {
+                case 'Futurista Cian':
+                    document.getElementById('primaryColor').value = '#00ffff';
+                    document.getElementById('secondaryColor').value = '#ff00ff';
+                    document.getElementById('backgroundColor').value = '#1a1a2e';
+                    break;
+                case 'Neón Rosa':
+                    document.getElementById('primaryColor').value = '#ff00ff';
+                    document.getElementById('secondaryColor').value = '#ff1493';
+                    document.getElementById('backgroundColor').value = '#2d1b69';
+                    break;
+                case 'Verde Tóxico':
+                    document.getElementById('primaryColor').value = '#39ff14';
+                    document.getElementById('secondaryColor').value = '#00ff88';
+                    document.getElementById('backgroundColor').value = '#1a2e1a';
+                    break;
+                case 'Dorado Épico':
+                    document.getElementById('primaryColor').value = '#ffd700';
+                    document.getElementById('secondaryColor').value = '#ffa500';
+                    document.getElementById('backgroundColor').value = '#2e2a1a';
+                    break;
+                case 'Púrpura Místico':
+                    document.getElementById('primaryColor').value = '#9d4edd';
+                    document.getElementById('secondaryColor').value = '#c77dff';
+                    document.getElementById('backgroundColor').value = '#2a1a2e';
+                    break;
+            }
+            applyColors();
+        }
+
+        // ACTUALIZAR TAMAÑO DE FUENTE
+        function updateFontSize(percentage) {
+            const value = parseInt(percentage);
+            let fontSize = '100%';
+            let sizeText = 'Mediano';
+            
+            if (value < 25) {
+                fontSize = '80%';
+                sizeText = 'Pequeño';
+            } else if (value < 50) {
+                fontSize = '90%';
+                sizeText = 'Mediano-Pequeño';
+            } else if (value < 75) {
+                fontSize = '100%';
+                sizeText = 'Mediano';
+            } else {
+                fontSize = '110%';
+                sizeText = 'Grande';
+            }
+            
+            document.documentElement.style.setProperty('--font-size', fontSize);
+            document.querySelector('#fontSizeSlider .slider-value').textContent = sizeText;
+        }
+
         // MODAL DE CONFIGURACIÓN
         const settingsBtn = document.getElementById('settingsBtn');
         const settingsModal = document.getElementById('settingsModal');
         const settingsClose = document.getElementById('settingsClose');
         const resetBtn = document.getElementById('resetSettings');
+        const resetColorsBtn = document.getElementById('resetColorsBtn');
 
         settingsBtn.addEventListener('click', () => {
             settingsModal.classList.add('active');
@@ -1889,11 +2155,13 @@
 
         settingsClose.addEventListener('click', () => {
             settingsModal.classList.remove('active');
+            saveSettings();
         });
 
         settingsModal.addEventListener('click', (e) => {
             if (e.target === settingsModal) {
                 settingsModal.classList.remove('active');
+                saveSettings();
             }
         });
 
@@ -1918,61 +2186,45 @@
         });
 
         // TOGGLE SWITCHES
-        const reduceAnimationsToggle = document.getElementById('reduceAnimationsToggle');
-        
         document.querySelectorAll('.toggle-switch').forEach(toggle => {
             toggle.addEventListener('click', () => {
                 toggle.classList.toggle('active');
                 const setting = toggle.dataset.setting;
                 
                 if (setting === 'reduce-animations') {
-                    const animationsReduced = toggle.classList.contains('active');
-                    
-                    // Aplicar o quitar animaciones según el estado del toggle
-                    if (animationsReduced) {
-                        // Desactivar animaciones
-                        document.querySelectorAll('*').forEach(el => {
-                            el.style.animation = 'none';
-                            el.style.transition = 'none';
-                        });
-                        document.body.style.setProperty('--animation-speed', '0s');
-                    } else {
-                        // Reactivar animaciones
-                        document.querySelectorAll('*').forEach(el => {
-                            el.style.animation = '';
-                            el.style.transition = '';
-                        });
-                        document.body.style.setProperty('--animation-speed', '0.4s');
-                    }
+                    document.body.classList.toggle('reduce-animations', toggle.classList.contains('active'));
                 }
                 
                 if (setting === 'low-power') {
-                    if (toggle.classList.contains('active')) {
-                        document.querySelectorAll('.particle').forEach(p => p.style.display = 'none');
-                    } else {
-                        document.querySelectorAll('.particle').forEach(p => p.style.display = 'block');
-                    }
+                    // Implementar lógica para modo bajo consumo
                 }
                 
-                showLoadingMessage('Configuración actualizada');
+                if (setting === 'high-contrast') {
+                    document.body.classList.toggle('high-contrast', toggle.classList.contains('active'));
+                }
+                
+                if (setting === 'reduce-motion') {
+                    // Implementar lógica para reducir movimiento
+                }
+                
+                if (setting === 'large-cursor') {
+                    document.body.classList.toggle('large-cursor', toggle.classList.contains('active'));
+                }
+                
+                if (setting === 'particles-effect') {
+                    document.getElementById('particles-js').style.display = 
+                        toggle.classList.contains('active') ? 'block' : 'none';
+                }
+                
+                saveSettings();
             });
         });
 
         // COLOR PICKERS
         document.querySelectorAll('input[type="color"]').forEach(picker => {
             picker.addEventListener('change', (e) => {
-                const setting = picker.dataset.setting;
-                if (setting === 'primary-color') {
-                    document.documentElement.style.setProperty('--primary', e.target.value);
-                }
-                if (setting === 'secondary-color') {
-                    document.documentElement.style.setProperty('--accent', e.target.value);
-                }
-                if (setting === 'background-color') {
-                    document.documentElement.style.setProperty('--darkest', e.target.value);
-                }
-                
-                showLoadingMessage('Color actualizado');
+                applyColors();
+                saveSettings();
             });
         });
 
@@ -1999,7 +2251,7 @@
                 track.style.width = percentage + '%';
                 
                 // Actualizar valor
-                if (slider.dataset.setting === 'particles') {
+                if (slider.id === 'particlesSlider') {
                     value.textContent = `${Math.round(percentage)}%`;
                     // Actualizar partículas
                     if (typeof particlesJS !== 'undefined') {
@@ -2011,19 +2263,14 @@
                             }
                         });
                     }
-                } else if (slider.dataset.setting === 'font-size') {
-                    const sizes = ['Pequeño', 'Mediano', 'Grande', 'Muy Grande'];
-                    const sizeIndex = Math.floor((percentage / 100) * 3);
-                    value.textContent = sizes[sizeIndex];
-                    document.body.style.fontSize = percentage > 75 ? '1.2rem' : percentage > 50 ? '1.1rem' : percentage > 25 ? '1rem' : '0.9rem';
-                } else {
-                    value.textContent = `${Math.round(percentage)}%`;
+                } else if (slider.id === 'fontSizeSlider') {
+                    updateFontSize(percentage);
                 }
             });
 
             document.addEventListener('mouseup', () => {
                 isDragging = false;
-                showLoadingMessage('Configuración actualizada');
+                saveSettings();
             });
         });
 
@@ -2040,7 +2287,8 @@
                 item.addEventListener('click', () => {
                     selected.querySelector('span').textContent = item.textContent;
                     items.style.display = 'none';
-                    showLoadingMessage(`Tema cambiado a ${item.textContent}`);
+                    applyTheme(item.textContent);
+                    saveSettings();
                 });
             });
             
@@ -2051,12 +2299,29 @@
             });
         });
 
+        // RESET COLORS
+        resetColorsBtn.addEventListener('click', () => {
+            document.getElementById('primaryColor').value = '#00ffff';
+            document.getElementById('secondaryColor').value = '#ff00ff';
+            document.getElementById('backgroundColor').value = '#1a1a2e';
+            applyColors();
+            saveSettings();
+            showNotification('COLORES RESTABLECIDOS', 'Los colores han sido restablecidos a los valores predeterminados');
+        });
+
         // RESET SETTINGS
         resetBtn.addEventListener('click', () => {
-            if (confirm('¿Estás seguro de que quieres restablecer todas las configuraciones?')) {
-                location.reload();
-                showLoadingMessage('Configuración restablecida');
-            }
+            document.getElementById('confirmationModal').classList.add('active');
+        });
+
+        // MODAL DE CONFIRMACIÓN
+        document.getElementById('cancelReset').addEventListener('click', () => {
+            document.getElementById('confirmationModal').classList.remove('active');
+        });
+
+        document.getElementById('confirmReset').addEventListener('click', () => {
+            localStorage.removeItem('chilenosRP_settings');
+            location.reload();
         });
 
         // LOADING BAR AL SCROLL
@@ -2149,6 +2414,16 @@
         // INICIALIZAR
         document.addEventListener('DOMContentLoaded', function() {
             initParticles();
+            loadSettings();
+            
+            // Inicializar sliders
+            document.querySelector('#particlesSlider .slider-track').style.width = '60%';
+            document.querySelector('#particlesSlider .slider-thumb').style.left = '60%';
+            document.querySelector('#particlesSlider .slider-value').textContent = '60%';
+            
+            document.querySelector('#fontSizeSlider .slider-track').style.width = '50%';
+            document.querySelector('#fontSizeSlider .slider-thumb').style.left = '50%';
+            document.querySelector('#fontSizeSlider .slider-value').textContent = 'Mediano';
             
             window.addEventListener('scroll', function() {
                 updateLoadingBar();
