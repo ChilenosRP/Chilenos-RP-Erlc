@@ -203,37 +203,37 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: var(--darkest);
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.6);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.8);
             transition: all 0.4s ease;
-            z-index: 999;
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            z-index: 9999;
+            border: 3px solid rgba(255, 255, 255, 0.5);
             animation: settingsPulse 3s ease-in-out infinite;
         }
 
         @keyframes settingsPulse {
             0%, 100% {
-                box-shadow: 0 10px 30px rgba(0, 255, 255, 0.6);
+                box-shadow: 0 10px 40px rgba(0, 255, 255, 0.8);
                 transform: scale(1);
             }
             50% {
-                box-shadow: 0 15px 40px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.4);
-                transform: scale(1.05);
+                box-shadow: 0 15px 50px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 0.6);
+                transform: scale(1.08);
             }
         }
 
         .settings-btn:hover {
-            transform: scale(1.15) rotate(90deg);
-            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.8);
+            transform: scale(1.2) rotate(90deg);
+            box-shadow: 0 20px 50px rgba(0, 255, 255, 1);
         }
 
         .settings-btn i {
@@ -1146,6 +1146,119 @@
     <!-- CURSOR PERSONALIZADO (solo PC) -->
     <div class="custom-cursor" id="customCursor"></div>
 
+    <!-- BOTÓN DE CONFIGURACIÓN -->
+    <div class="settings-btn" id="settingsBtn">
+        <i class="fas fa-cog"></i>
+    </div>
+
+    <!-- MODAL DE CONFIGURACIÓN -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="settings-content">
+            <div class="settings-close" id="settingsClose">
+                <i class="fas fa-times"></i>
+            </div>
+            
+            <h2 class="settings-header">⚙️ AJUSTES</h2>
+            
+            <!-- SECCIÓN RENDIMIENTO -->
+            <div class="settings-section">
+                <h3 class="settings-section-title">
+                    <i class="fas fa-tachometer-alt"></i> Rendimiento
+                </h3>
+                
+                <div class="settings-option">
+                    <div class="settings-option-label">
+                        <div class="settings-option-title">Reducir Animaciones</div>
+                        <div class="settings-option-desc">Mejora el rendimiento reduciendo efectos visuales</div>
+                    </div>
+                    <div class="toggle-switch" data-setting="reduce-animations">
+                        <div class="toggle-handle"></div>
+                    </div>
+                </div>
+                
+                <div class="settings-option">
+                    <div class="settings-option-label">
+                        <div class="settings-option-title">Modo de Bajo Consumo</div>
+                        <div class="settings-option-desc">Optimiza el rendimiento para dispositivos de gama baja</div>
+                    </div>
+                    <div class="toggle-switch" data-setting="low-power">
+                        <div class="toggle-handle"></div>
+                    </div>
+                </div>
+                
+                <div class="settings-option">
+                    <div class="settings-option-label">
+                        <div class="settings-option-title">Cantidad de Partículas</div>
+                        <div class="settings-option-desc">Ajusta el número de partículas en el fondo</div>
+                    </div>
+                    <div class="slider" data-setting="particles">
+                        <div class="slider-track" style="width: 60%;"></div>
+                        <div class="slider-thumb" style="left: 60%;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN APARIENCIA -->
+            <div class="settings-section">
+                <h3 class="settings-section-title">
+                    <i class="fas fa-palette"></i> Apariencia
+                </h3>
+                
+                <div class="settings-option">
+                    <div class="settings-option-label">
+                        <div class="settings-option-title">Color Primario</div>
+                        <div class="settings-option-desc">Color principal de la interfaz</div>
+                    </div>
+                    <div class="color-picker">
+                        <input type="color" value="#00ffff" data-setting="primary-color">
+                    </div>
+                </div>
+                
+                <div class="settings-option">
+                    <div class="settings-option-label">
+                        <div class="settings-option-title">Color Secundario</div>
+                        <div class="settings-option-desc">Color de acento de la interfaz</div>
+                    </div>
+                    <div class="color-picker">
+                        <input type="color" value="#00ff88" data-setting="secondary-color">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN ACCESIBILIDAD -->
+            <div class="settings-section">
+                <h3 class="settings-section-title">
+                    <i class="fas fa-universal-access"></i> Accesibilidad
+                </h3>
+                
+                <div class="settings-option">
+                    <div class="settings-option-label">
+                        <div class="settings-option-title">Alto Contraste</div>
+                        <div class="settings-option-desc">Mejora la legibilidad del texto</div>
+                    </div>
+                    <div class="toggle-switch" data-setting="high-contrast">
+                        <div class="toggle-handle"></div>
+                    </div>
+                </div>
+                
+                <div class="settings-option">
+                    <div class="settings-option-label">
+                        <div class="settings-option-title">Reducir Movimiento</div>
+                        <div class="settings-option-desc">Minimiza las animaciones y transiciones</div>
+                    </div>
+                    <div class="toggle-switch" data-setting="reduce-motion">
+                        <div class="toggle-handle"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- BOTÓN RESET -->
+            <button class="reset-btn" id="resetSettings">
+                <i class="fas fa-undo"></i> RESTABLECER TODO
+            </button>
+        </div>
+    </div>
+
     <!-- LOADING BAR -->
     <div class="loading-bar" id="loadingBar"></div>
 
@@ -1464,12 +1577,126 @@
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 
-                const colors = ['#00ffff', '#ff00ff', '#00ff88', '#0080ff'];
+                const colors = ['#00ffff', '#ff00ff', '#00ff88', '#0080ff', '#ff00aa'];
                 particle.style.background = colors[Math.floor(Math.random() * colors.length)];
                 
                 particlesContainer.appendChild(particle);
             }
         }
+
+        // MODAL DE CONFIGURACIÓN
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsModal = document.getElementById('settingsModal');
+        const settingsClose = document.getElementById('settingsClose');
+        const resetBtn = document.getElementById('resetSettings');
+
+        settingsBtn.addEventListener('click', () => {
+            settingsModal.classList.add('active');
+        });
+
+        settingsClose.addEventListener('click', () => {
+            settingsModal.classList.remove('active');
+        });
+
+        settingsModal.addEventListener('click', (e) => {
+            if (e.target === settingsModal) {
+                settingsModal.classList.remove('active');
+            }
+        });
+
+        // TOGGLE SWITCHES
+        document.querySelectorAll('.toggle-switch').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('active');
+                const setting = toggle.dataset.setting;
+                
+                if (setting === 'reduce-animations') {
+                    document.body.style.setProperty('--animation-speed', toggle.classList.contains('active') ? '0.1s' : '0.4s');
+                }
+                
+                if (setting === 'low-power') {
+                    if (toggle.classList.contains('active')) {
+                        document.querySelectorAll('.particle').forEach(p => p.style.display = 'none');
+                    } else {
+                        document.querySelectorAll('.particle').forEach(p => p.style.display = 'block');
+                    }
+                }
+            });
+        });
+
+        // COLOR PICKERS
+        document.querySelectorAll('input[type="color"]').forEach(picker => {
+            picker.addEventListener('change', (e) => {
+                const setting = picker.dataset.setting;
+                if (setting === 'primary-color') {
+                    document.documentElement.style.setProperty('--primary', e.target.value);
+                }
+                if (setting === 'secondary-color') {
+                    document.documentElement.style.setProperty('--accent', e.target.value);
+                }
+            });
+        });
+
+        // SLIDER
+        document.querySelectorAll('.slider').forEach(slider => {
+            const thumb = slider.querySelector('.slider-thumb');
+            const track = slider.querySelector('.slider-track');
+            let isDragging = false;
+
+            thumb.addEventListener('mousedown', () => {
+                isDragging = true;
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                
+                const rect = slider.getBoundingClientRect();
+                let x = e.clientX - rect.left;
+                x = Math.max(0, Math.min(x, rect.width));
+                
+                const percentage = (x / rect.width) * 100;
+                thumb.style.left = percentage + '%';
+                track.style.width = percentage + '%';
+                
+                // Ajustar cantidad de partículas
+                const particleCount = Math.floor((percentage / 100) * 120);
+                document.getElementById('particles').innerHTML = '';
+                createParticlesWithCount(particleCount);
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+        });
+
+        function createParticlesWithCount(count) {
+            const particlesContainer = document.getElementById('particles');
+            
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 15) + 's';
+                
+                const size = 2 + Math.random() * 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                const colors = ['#00ffff', '#ff00ff', '#00ff88', '#0080ff', '#ff00aa'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // RESET SETTINGS
+        resetBtn.addEventListener('click', () => {
+            if (confirm('¿Estás seguro de que quieres restablecer todas las configuraciones?')) {
+                location.reload();
+            }
+        });
 
         // LOADING BAR AL SCROLL
         function updateLoadingBar() {
