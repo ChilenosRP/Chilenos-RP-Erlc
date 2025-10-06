@@ -22,6 +22,10 @@
             --dark: #0f3460;
             --darker: #16213e;
             --darkest: #1a1a2e;
+            --gold: #ffd700;
+            --purple: #9d4edd;
+            --orange: #ff6d00;
+            --animation-speed: 0.4s;
         }
 
         /* CURSOR PERSONALIZADO SOLO PARA PC */
@@ -245,6 +249,78 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* BARRA LATERAL DE ESTADÍSTICAS */
+        .stats-sidebar {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            background: rgba(10, 15, 35, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.6);
+            z-index: 998;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-width: 200px;
+            transition: all 0.4s ease;
+        }
+
+        .stats-sidebar.hidden {
+            transform: translateY(-50%) translateX(-100%);
+            opacity: 0;
+        }
+
+        .stats-toggle {
+            position: absolute;
+            top: 50%;
+            right: -40px;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 0 10px 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--darkest);
+            font-size: 1.2rem;
+            box-shadow: 5px 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #ccccff;
+            text-align: center;
+        }
+
         /* MODAL DE CONFIGURACIÓN */
         .settings-modal {
             position: fixed;
@@ -275,7 +351,7 @@
             backdrop-filter: blur(30px);
             border-radius: 30px;
             padding: 40px;
-            max-width: 800px;
+            max-width: 900px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
@@ -330,6 +406,49 @@
             -webkit-text-fill-color: transparent;
             background-size: 300% 300%;
             animation: gradientFlow 3s ease infinite;
+        }
+
+        .settings-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+
+        .settings-tab {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .settings-tab.active {
+            background: rgba(0, 255, 255, 0.2);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .settings-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .settings-tab-content {
+            display: none;
+        }
+
+        .settings-tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
         }
 
         .settings-section {
@@ -418,8 +537,13 @@
         }
 
         /* SLIDER */
-        .slider {
+        .slider-container {
             width: 200px;
+            position: relative;
+        }
+
+        .slider {
+            width: 100%;
             height: 6px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
@@ -453,6 +577,19 @@
             transform: translate(-50%, -50%) scale(1.2);
         }
 
+        .slider-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: var(--darkest);
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
         /* COLOR PICKER */
         .color-picker {
             width: 200px;
@@ -475,6 +612,52 @@
             height: 100%;
             border: none;
             cursor: pointer;
+        }
+
+        /* SELECT PERSONALIZADO */
+        .custom-select {
+            width: 200px;
+            position: relative;
+        }
+
+        .select-selected {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .select-selected:hover {
+            border-color: var(--primary);
+        }
+
+        .select-items {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            margin-top: 5px;
+            overflow: hidden;
+            z-index: 10;
+            display: none;
+        }
+
+        .select-items div {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .select-items div:hover {
+            background: rgba(0, 255, 255, 0.2);
         }
 
         /* BOTÓN RESET */
@@ -1132,6 +1315,10 @@
             .staff-grid {
                 grid-template-columns: 1fr;
             }
+
+            .stats-sidebar {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -1146,6 +1333,29 @@
     <!-- CURSOR PERSONALIZADO (solo PC) -->
     <div class="custom-cursor" id="customCursor"></div>
 
+    <!-- BARRA LATERAL DE ESTADÍSTICAS -->
+    <div class="stats-sidebar" id="statsSidebar">
+        <div class="stats-toggle" id="statsToggle">
+            <i class="fas fa-chart-bar"></i>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">1,254</div>
+            <div class="stat-label">JUGADORES ACTIVOS</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">89%</div>
+            <div class="stat-label">SATISFACCIÓN</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">24/7</div>
+            <div class="stat-label">SERVIDOR ACTIVO</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">256</div>
+            <div class="stat-label">MIEMBROS VIP</div>
+        </div>
+    </div>
+
     <!-- BOTÓN DE CONFIGURACIÓN -->
     <div class="settings-btn" id="settingsBtn">
         <i class="fas fa-cog"></i>
@@ -1158,103 +1368,317 @@
                 <i class="fas fa-times"></i>
             </div>
             
-            <h2 class="settings-header">⚙️ AJUSTES</h2>
+            <h2 class="settings-header">⚙️ PANEL DE CONFIGURACIÓN ÉPICO</h2>
             
-            <!-- SECCIÓN RENDIMIENTO -->
-            <div class="settings-section">
-                <h3 class="settings-section-title">
+            <!-- PESTAÑAS DE CONFIGURACIÓN -->
+            <div class="settings-tabs">
+                <div class="settings-tab active" data-tab="rendimiento">
                     <i class="fas fa-tachometer-alt"></i> Rendimiento
-                </h3>
-                
-                <div class="settings-option">
-                    <div class="settings-option-label">
-                        <div class="settings-option-title">Reducir Animaciones</div>
-                        <div class="settings-option-desc">Mejora el rendimiento reduciendo efectos visuales</div>
-                    </div>
-                    <div class="toggle-switch" data-setting="reduce-animations">
-                        <div class="toggle-handle"></div>
-                    </div>
                 </div>
-                
-                <div class="settings-option">
-                    <div class="settings-option-label">
-                        <div class="settings-option-title">Modo de Bajo Consumo</div>
-                        <div class="settings-option-desc">Optimiza el rendimiento para dispositivos de gama baja</div>
-                    </div>
-                    <div class="toggle-switch" data-setting="low-power">
-                        <div class="toggle-handle"></div>
-                    </div>
-                </div>
-                
-                <div class="settings-option">
-                    <div class="settings-option-label">
-                        <div class="settings-option-title">Cantidad de Partículas</div>
-                        <div class="settings-option-desc">Ajusta el número de partículas en el fondo</div>
-                    </div>
-                    <div class="slider" data-setting="particles">
-                        <div class="slider-track" style="width: 60%;"></div>
-                        <div class="slider-thumb" style="left: 60%;"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- SECCIÓN APARIENCIA -->
-            <div class="settings-section">
-                <h3 class="settings-section-title">
+                <div class="settings-tab" data-tab="apariencia">
                     <i class="fas fa-palette"></i> Apariencia
-                </h3>
-                
-                <div class="settings-option">
-                    <div class="settings-option-label">
-                        <div class="settings-option-title">Color Primario</div>
-                        <div class="settings-option-desc">Color principal de la interfaz</div>
-                    </div>
-                    <div class="color-picker">
-                        <input type="color" value="#00ffff" data-setting="primary-color">
-                    </div>
                 </div>
-                
-                <div class="settings-option">
-                    <div class="settings-option-label">
-                        <div class="settings-option-title">Color Secundario</div>
-                        <div class="settings-option-desc">Color de acento de la interfaz</div>
+                <div class="settings-tab" data-tab="accesibilidad">
+                    <i class="fas fa-universal-access"></i> Accesibilidad
+                </div>
+                <div class="settings-tab" data-tab="audio">
+                    <i class="fas fa-volume-up"></i> Audio
+                </div>
+                <div class="settings-tab" data-tab="avanzado">
+                    <i class="fas fa-cogs"></i> Avanzado
+                </div>
+            </div>
+            
+            <!-- CONTENIDO DE PESTAÑAS -->
+            <div class="settings-tab-content active" id="rendimiento">
+                <!-- SECCIÓN RENDIMIENTO -->
+                <div class="settings-section">
+                    <h3 class="settings-section-title">
+                        <i class="fas fa-tachometer-alt"></i> Optimización de Rendimiento
+                    </h3>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Reducir Animaciones</div>
+                            <div class="settings-option-desc">Mejora el rendimiento reduciendo efectos visuales</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="reduce-animations">
+                            <div class="toggle-handle"></div>
+                        </div>
                     </div>
-                    <div class="color-picker">
-                        <input type="color" value="#00ff88" data-setting="secondary-color">
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Modo de Bajo Consumo</div>
+                            <div class="settings-option-desc">Optimiza el rendimiento para dispositivos de gama baja</div>
+                        </div>
+                        <div class="toggle-switch" data-setting="low-power">
+                            <div class="toggle-handle"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Cantidad de Partículas</div>
+                            <div class="settings-option-desc">Ajusta el número de partículas en el fondo</div>
+                        </div>
+                        <div class="slider-container">
+                            <div class="slider" data-setting="particles">
+                                <div class="slider-track" style="width: 60%;"></div>
+                                <div class="slider-thumb" style="left: 60%;"></div>
+                                <div class="slider-value">60%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Calidad de Efectos</div>
+                            <div class="settings-option-desc">Ajusta la calidad de los efectos visuales</div>
+                        </div>
+                        <div class="custom-select">
+                            <div class="select-selected">
+                                <span>Alta Calidad</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="select-items">
+                                <div>Baja Calidad</div>
+                                <div>Calidad Media</div>
+                                <div>Alta Calidad</div>
+                                <div>Calidad Ultra</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- SECCIÓN ACCESIBILIDAD -->
-            <div class="settings-section">
-                <h3 class="settings-section-title">
-                    <i class="fas fa-universal-access"></i> Accesibilidad
-                </h3>
-                
-                <div class="settings-option">
-                    <div class="settings-option-label">
-                        <div class="settings-option-title">Alto Contraste</div>
-                        <div class="settings-option-desc">Mejora la legibilidad del texto</div>
+            <div class="settings-tab-content" id="apariencia">
+                <!-- SECCIÓN APARIENCIA -->
+                <div class="settings-section">
+                    <h3 class="settings-section-title">
+                        <i class="fas fa-palette"></i> Personalización de Apariencia
+                    </h3>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Color Primario</div>
+                            <div class="settings-option-desc">Color principal de la interfaz</div>
+                        </div>
+                        <div class="color-picker">
+                            <input type="color" value="#00ffff" data-setting="primary-color">
+                        </div>
                     </div>
-                    <div class="toggle-switch" data-setting="high-contrast">
-                        <div class="toggle-handle"></div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Color Secundario</div>
+                            <div class="settings-option-desc">Color de acento de la interfaz</div>
+                        </div>
+                        <div class="color-picker">
+                            <input type="color" value="#00ff88" data-setting="secondary-color">
+                        </div>
+                    </div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Color de Fondo</div>
+                            <div class="settings-option-desc">Color del fondo de la página</div>
+                        </div>
+                        <div class="color-picker">
+                            <input type="color" value="#1a1a2e" data-setting="background-color">
+                        </div>
+                    </div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Tema de Color</div>
+                            <div class="settings-option-desc">Selecciona un tema predefinido</div>
+                        </div>
+                        <div class="custom-select">
+                            <div class="select-selected">
+                                <span>Futurista Cian</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="select-items">
+                                <div>Futurista Cian</div>
+                                <div>Neón Rosa</div>
+                                <div>Verde Tóxico</div>
+                                <div>Dorado Épico</div>
+                                <div>Púrpura Místico</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Efectos de Partículas</div>
+                            <div class="settings-option-desc">Activa/desactiva las partículas del fondo</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="particles-effect">
+                            <div class="toggle-handle"></div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="settings-option">
-                    <div class="settings-option-label">
-                        <div class="settings-option-title">Reducir Movimiento</div>
-                        <div class="settings-option-desc">Minimiza las animaciones y transiciones</div>
+            </div>
+            
+            <div class="settings-tab-content" id="accesibilidad">
+                <!-- SECCIÓN ACCESIBILIDAD -->
+                <div class="settings-section">
+                    <h3 class="settings-section-title">
+                        <i class="fas fa-universal-access"></i> Opciones de Accesibilidad
+                    </h3>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Alto Contraste</div>
+                            <div class="settings-option-desc">Mejora la legibilidad del texto</div>
+                        </div>
+                        <div class="toggle-switch" data-setting="high-contrast">
+                            <div class="toggle-handle"></div>
+                        </div>
                     </div>
-                    <div class="toggle-switch" data-setting="reduce-motion">
-                        <div class="toggle-handle"></div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Reducir Movimiento</div>
+                            <div class="settings-option-desc">Minimiza las animaciones y transiciones</div>
+                        </div>
+                        <div class="toggle-switch" data-setting="reduce-motion">
+                            <div class="toggle-handle"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Tamaño de Fuente</div>
+                            <div class="settings-option-desc">Ajusta el tamaño del texto para mejor legibilidad</div>
+                        </div>
+                        <div class="slider-container">
+                            <div class="slider" data-setting="font-size">
+                                <div class="slider-track" style="width: 75%;"></div>
+                                <div class="slider-thumb" style="left: 75%;"></div>
+                                <div class="slider-value">Mediano</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Cursor Grande</div>
+                            <div class="settings-option-desc">Aumenta el tamaño del cursor para mejor visibilidad</div>
+                        </div>
+                        <div class="toggle-switch" data-setting="large-cursor">
+                            <div class="toggle-handle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="settings-tab-content" id="audio">
+                <!-- SECCIÓN AUDIO -->
+                <div class="settings-section">
+                    <h3 class="settings-section-title">
+                        <i class="fas fa-volume-up"></i> Configuración de Audio
+                    </h3>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Efectos de Sonido</div>
+                            <div class="settings-option-desc">Activa/desactiva los efectos de sonido</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="sound-effects">
+                            <div class="toggle-handle"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Volumen de Efectos</div>
+                            <div class="settings-option-desc">Ajusta el volumen de los efectos de sonido</div>
+                        </div>
+                        <div class="slider-container">
+                            <div class="slider" data-setting="effects-volume">
+                                <div class="slider-track" style="width: 80%;"></div>
+                                <div class="slider-thumb" style="left: 80%;"></div>
+                                <div class="slider-value">80%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Música de Fondo</div>
+                            <div class="settings-option-desc">Activa/desactiva la música ambiental</div>
+                        </div>
+                        <div class="toggle-switch" data-setting="background-music">
+                            <div class="toggle-handle"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Volumen de Música</div>
+                            <div class="settings-option-desc">Ajusta el volumen de la música de fondo</div>
+                        </div>
+                        <div class="slider-container">
+                            <div class="slider" data-setting="music-volume">
+                                <div class="slider-track" style="width: 50%;"></div>
+                                <div class="slider-thumb" style="left: 50%;"></div>
+                                <div class="slider-value">50%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="settings-tab-content" id="avanzado">
+                <!-- SECCIÓN AVANZADO -->
+                <div class="settings-section">
+                    <h3 class="settings-section-title">
+                        <i class="fas fa-cogs"></i> Configuraciones Avanzadas
+                    </h3>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Modo Desarrollador</div>
+                            <div class="settings-option-desc">Activa herramientas de desarrollo</div>
+                        </div>
+                        <div class="toggle-switch" data-setting="developer-mode">
+                            <div class="toggle-handle"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Mostrar FPS</div>
+                            <div class="settings-option-desc">Muestra los frames por segundo</div>
+                        </div>
+                        <div class="toggle-switch" data-setting="show-fps">
+                            <div class="toggle-handle"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Limpiar Caché</div>
+                            <div class="settings-option-desc">Elimina datos temporales del navegador</div>
+                        </div>
+                        <button class="comprar-btn" style="background: var(--warning); color: white;">Limpiar Ahora</button>
+                    </div>
+                    
+                    <div class="settings-option">
+                        <div class="settings-option-label">
+                            <div class="settings-option-title">Exportar Configuración</div>
+                            <div class="settings-option-desc">Guarda tu configuración actual</div>
+                        </div>
+                        <button class="comprar-btn" style="background: var(--accent); color: var(--darkest);">Exportar</button>
                     </div>
                 </div>
             </div>
             
             <!-- BOTÓN RESET -->
             <button class="reset-btn" id="resetSettings">
-                <i class="fas fa-undo"></i> RESTABLECER TODO
+                <i class="fas fa-undo"></i> RESTABLECER CONFIGURACIÓN POR DEFECTO
             </button>
         </div>
     </div>
@@ -1560,6 +1984,14 @@
             }, 1500);
         });
 
+        // BARRA LATERAL DE ESTADÍSTICAS
+        const statsSidebar = document.getElementById('statsSidebar');
+        const statsToggle = document.getElementById('statsToggle');
+        
+        statsToggle.addEventListener('click', () => {
+            statsSidebar.classList.toggle('hidden');
+        });
+
         // CREAR PARTÍCULAS
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
@@ -1604,6 +2036,24 @@
             }
         });
 
+        // PESTAÑAS DE CONFIGURACIÓN
+        const settingsTabs = document.querySelectorAll('.settings-tab');
+        const tabContents = document.querySelectorAll('.settings-tab-content');
+
+        settingsTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                
+                // Remover clase activa de todas las pestañas
+                settingsTabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Agregar clase activa a la pestaña seleccionada
+                tab.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
         // TOGGLE SWITCHES
         document.querySelectorAll('.toggle-switch').forEach(toggle => {
             toggle.addEventListener('click', () => {
@@ -1634,6 +2084,9 @@
                 if (setting === 'secondary-color') {
                     document.documentElement.style.setProperty('--accent', e.target.value);
                 }
+                if (setting === 'background-color') {
+                    document.documentElement.style.setProperty('--darkest', e.target.value);
+                }
             });
         });
 
@@ -1641,6 +2094,7 @@
         document.querySelectorAll('.slider').forEach(slider => {
             const thumb = slider.querySelector('.slider-thumb');
             const track = slider.querySelector('.slider-track');
+            const value = slider.querySelector('.slider-value');
             let isDragging = false;
 
             thumb.addEventListener('mousedown', () => {
@@ -1658,10 +2112,20 @@
                 thumb.style.left = percentage + '%';
                 track.style.width = percentage + '%';
                 
-                // Ajustar cantidad de partículas
-                const particleCount = Math.floor((percentage / 100) * 120);
-                document.getElementById('particles').innerHTML = '';
-                createParticlesWithCount(particleCount);
+                // Actualizar valor
+                if (slider.dataset.setting === 'particles') {
+                    value.textContent = `${Math.round(percentage)}%`;
+                    const particleCount = Math.floor((percentage / 100) * 120);
+                    document.getElementById('particles').innerHTML = '';
+                    createParticlesWithCount(particleCount);
+                } else if (slider.dataset.setting === 'font-size') {
+                    const sizes = ['Pequeño', 'Mediano', 'Grande', 'Muy Grande'];
+                    const sizeIndex = Math.floor((percentage / 100) * 3);
+                    value.textContent = sizes[sizeIndex];
+                    document.body.style.fontSize = percentage > 75 ? '1.2rem' : percentage > 50 ? '1.1rem' : percentage > 25 ? '1rem' : '0.9rem';
+                } else {
+                    value.textContent = `${Math.round(percentage)}%`;
+                }
             });
 
             document.addEventListener('mouseup', () => {
@@ -1690,6 +2154,29 @@
                 particlesContainer.appendChild(particle);
             }
         }
+
+        // SELECT PERSONALIZADO
+        document.querySelectorAll('.custom-select').forEach(select => {
+            const selected = select.querySelector('.select-selected');
+            const items = select.querySelector('.select-items');
+            
+            selected.addEventListener('click', () => {
+                items.style.display = items.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            items.querySelectorAll('div').forEach(item => {
+                item.addEventListener('click', () => {
+                    selected.querySelector('span').textContent = item.textContent;
+                    items.style.display = 'none';
+                });
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!select.contains(e.target)) {
+                    items.style.display = 'none';
+                }
+            });
+        });
 
         // RESET SETTINGS
         resetBtn.addEventListener('click', () => {
