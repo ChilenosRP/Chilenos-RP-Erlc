@@ -1,1 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Normativas - Chilenos RP ER:LC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* BARRA DE NAVEGACIÓN */
+        .nav {
+            background: rgba(10, 15, 35, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            padding: 12px 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .nav a:hover {
+            background: #00ffff;
+            color: #1a1a2e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+        }
+
+        /* ENCABEZADO */
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #00ffff;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        h1 {
+            color: #00ffff;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            color: #ccccff;
+        }
+
+        /* CONTENEDOR DE NORMAS */
+        .normas-container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* CATEGORÍAS DE NORMAS */
+        .categoria {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 15px;
+            border-left: 5px solid #00ffff;
+            transition: transform 0.3s ease;
+        }
+
+        .categoria:hover {
+            transform: translateX(10px);
+        }
+
+        .categoria h2 {
+            color: #00ffff;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ITEMS DE NORMAS */
+        .norma-item {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 4px solid #ff4444;
+            transition: all 0.3s ease;
+        }
+
+        .norma-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateX(5px);
+        }
+
+        .norma-item h3 {
+            color: #ff4444;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .norma-item p {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* BOTÓN VOLVER */
+        .btn-volver {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            color: #000;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .btn-volver:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.5);
+        }
+
+        /* BADGE DE IMPORTANCIA */
+        .importancia {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #ff4444;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .alta { background: #ff4444; }
+        .media { background: #ffaa00; }
+        .baja { background: #00ff88; color: #000; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- BARRA DE NAVEGACIÓN -->
+        <div class="nav">
+            <a href="../index.html">🏠 INICIO</a>
+            <a href="index.html">📜 NORMAS</a>
+            <a href="#pases">💎 PASES ROBUX</a>
+            <a href="#discord">🎮 DISCORD</a>
+        </div>
+        
+        <!-- ENCABEZADO -->
+        <div class="header">
+            <h1>📜 NORMATIVAS DEL SERVIDOR</h1>
+            <p>Conoce y respeta las reglas de nuestra comunidad ER:LC Liberty County</p>
+            <p style="color: #ff4444; margin-top: 15px; font-weight: bold;">⚠️ El incumplimiento resulta en sanciones</p>
+        </div>
+
+        <!-- CONTENEDOR DE NORMAS -->
+        <div class="normas-container">
+            
+            <!-- NORMAS GENERALES -->
+            <div class="categoria">
+                <h2>🚨 NORMAS GENERALES</h2>
+                
+                <div class="norma-item">
+                    <h3>📝 Respeto entre jugadores <span class="importancia alta">ALTA</span></h3>
+                    <p>Todo jugador debe mantener respeto hacia los demás miembros de la comunidad. No se tolera el bullying, acoso o discriminación.</p>
+                </div>
+
+                <div class="norma-item">
+                    <h3>🎭 Roleplay de calidad <span class="importancia alta">ALTA</span></h3>
+                    <p>Mantén un roleplay realista y de calidad en todo momento. Evita acciones que rompan la inmersión del juego.</p>
+                </div>
+
+                <div class="norma-item">
+                    <h3>🚫 Metagaming <span class="importancia alta">ALTA</span></h3>
+                    <p>Prohibido usar información OOC (fuera del personaje) para beneficio IC (en el personaje).</p>
+                </div>
+
+                <div class="norma-item">
+                    <h3>📢 Comunicación clara <span class="importancia media">MEDIA</span></h3>
+                    <p>Utiliza el chat de voz y texto de manera apropiada. Evita spam y contenido inapropiado.</p>
+                </div>
+            </div>
+
+            <!-- NORMAS DE STAFF -->
+            <div class="categoria">
+                <h2>👮 NORMAS DE STAFF</h2>
+                
+                <div class="norma-item">
+                    <h3>⚖️ Imparcialidad <span class="importancia alta">ALTA</span></h3>
+                    <p>El staff debe ser imparcial en todas las situaciones y no favorecer a amigos o conocidos.</p>
+                </div>
+
+                <div class="norma-item">
+                    <h3>📋 Conocimiento de reglas <span class="importancia alta">ALTA</span></h3>
+                    <p>Todo miembro del staff debe conocer perfectamente todas las normativas del servidor.</p>
+                </div>
+
+                <div class="norma-item">
+                    <h3>🕒 Actividad <span class="importancia media">MEDIA</span></h3>
+                    <p>El staff debe mantener actividad regular en el servidor y estar disponible para ayudar.</p>
+                </div>
+            </div>
+
+            <!-- NORMAS DE JUEGO -->
+            <div class="categoria">
+                <h2>🎮 NORMAS DE JUEGO</h2>
+                
+                <div class="norma-item">
+                    <h3>🔫 RDM (Random Death Match) <span class="importancia alta">ALTA</span></h3>
+                    <p>Prohibido matar jugadores sin razón roleplay válida. Toda acción letal debe tener justificación.</p>
+                </div>
+
+                <div class="norma-item">
+                    <h3>🚗 VDM (Vehicle Death Match) <span class="importancia alta">ALTA</span></h3>
+                    <p>No atropellar jugadores intencionalmente sin razón roleplay válida.</p>
+                </div>
+
+                <div class="norma-item">
+                    <h3>🏠 Nuevo Life Rule <span class="importancia media">MEDIA</span></h3>
+                    <p>Al morir, no recuerdas los eventos que llevaron a tu muerte (excepto información básica).</p>
+                </div>
+            </div>
+
+            <!-- SANCIONES -->
+            <div class="categoria">
+                <h2>⚖️ SISTEMA DE SANCIONES</h2>
+                
+                <div class="norma-item">
+                    <h3>📈 Acumulación de warns <span class="importancia media">MEDIA</span></h3>
+                    <p>3 warns = 1 día de ban | 5 warns = 3 días de ban | 7 warns = ban permanente</p>
+                </div>
+
+                <div class="norma-item">
+                    <h3>🔄 Apelaciones <span class="importancia baja">BAJA</span></h3>
+                    <p>Las apelaciones se realizan exclusivamente por Discord en el canal correspondiente.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BOTÓN VOLVER -->
+        <div style="text-align: center;">
+            <a href="../index.html" class="btn-volver">🏠 Volver al Inicio</a>
+        </div>
+
+    </div>
+</body>
+</html>
