@@ -565,6 +565,67 @@
             transition: width 0.3s ease;
         }
 
+        /* SECCIÓN BENEFICIOS VIP */
+        .beneficios-vip {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .beneficios-vip h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, gold, orange, yellow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .beneficios-vip p {
+            font-size: 1.2rem;
+            color: #ccccff;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .beneficio-item {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid gold;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .beneficio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .beneficio-item i {
+            font-size: 2.5rem;
+            color: gold;
+            margin-bottom: 15px;
+        }
+
+        .beneficio-item h3 {
+            color: gold;
+            margin-bottom: 10px;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .nav-container {
@@ -749,6 +810,47 @@
                     <a href="https://discord.gg/TU_LINK_FISCALIA" class="postular-btn" target="_blank">
                         POSTULAR
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN BENEFICIOS VIP -->
+        <section class="section" id="beneficios-vip">
+            <h2 class="section-title">BENEFICIOS VIP</h2>
+            <p class="section-subtitle">Ventajas exclusivas para nuestros miembros VIP</p>
+            
+            <div class="beneficios-vip">
+                <div class="beneficios-grid">
+                    <div class="beneficio-item">
+                        <i class="fas fa-crown"></i>
+                        <h3>Tag VIP</h3>
+                        <p>Tag exclusivo en Discord y en el juego</p>
+                    </div>
+                    <div class="beneficio-item">
+                        <i class="fas fa-car"></i>
+                        <h3>Vehículos Exclusivos</h3>
+                        <p>Acceso a vehículos que otros jugadores no tienen</p>
+                    </div>
+                    <div class="beneficio-item">
+                        <i class="fas fa-home"></i>
+                        <h3>Casas Exclusivas</h3>
+                        <p>Propiedades únicas en las mejores ubicaciones</p>
+                    </div>
+                    <div class="beneficio-item">
+                        <i class="fas fa-user-shield"></i>
+                        <h3>Protección Especial</h3>
+                        <p>Menos probabilidad de ser robado o atacado</p>
+                    </div>
+                    <div class="beneficio-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <h3>Bonificación Económica</h3>
+                        <p>Gana más dinero en todas las actividades</p>
+                    </div>
+                    <div class="beneficio-item">
+                        <i class="fas fa-headset"></i>
+                        <h3>Soporte Prioritario</h3>
+                        <p>Atención inmediata del staff para tus consultas</p>
+                    </div>
                 </div>
             </div>
         </section>
