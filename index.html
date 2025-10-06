@@ -28,57 +28,6 @@
             --animation-speed: 0.4s;
         }
 
-        /* CURSOR PERSONALIZADO SOLO PARA PC */
-        @media (pointer: fine) {
-            body, a, button {
-                cursor: none !important;
-            }
-
-            .custom-cursor {
-                width: 20px;
-                height: 20px;
-                border: 2px solid var(--primary);
-                border-radius: 50%;
-                position: fixed;
-                pointer-events: none;
-                z-index: 10000;
-                transition: transform 0.15s ease, background 0.15s ease;
-                mix-blend-mode: difference;
-                box-shadow: 0 0 20px var(--primary);
-            }
-
-            .custom-cursor::before {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 4px;
-                height: 4px;
-                background: var(--primary);
-                border-radius: 50%;
-                transform: translate(-50%, -50%);
-                box-shadow: 0 0 10px var(--primary);
-            }
-
-            .custom-cursor.click {
-                transform: scale(0.7);
-                background: rgba(0, 255, 255, 0.3);
-            }
-
-            .custom-cursor-trail {
-                width: 6px;
-                height: 6px;
-                background: var(--primary);
-                border-radius: 50%;
-                position: fixed;
-                pointer-events: none;
-                z-index: 9999;
-                opacity: 0.6;
-                transition: opacity 0.3s ease;
-                box-shadow: 0 0 10px var(--primary);
-            }
-        }
-
         body {
             font-family: 'Rajdhani', sans-serif;
             background: linear-gradient(135deg, var(--darkest) 0%, var(--darker) 50%, var(--dark) 100%);
@@ -195,11 +144,11 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: var(--primary);
+            background: rgba(255, 255, 255, 0.7);
             border-radius: 50%;
             animation: floatParticle 20s infinite linear;
             opacity: 0;
-            box-shadow: 0 0 10px currentColor;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         /* BOTÓN DE CONFIGURACIÓN */
@@ -1082,6 +1031,30 @@
             margin-bottom: 25px;
         }
 
+        /* BOTÓN POSTULAR PARA FACCIONES */
+        .postular-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: var(--darkest);
+            text-align: center;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 15px;
+        }
+
+        .postular-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.4);
+        }
+
         /* COLORES FACCIONES */
         .carabineros { border-color: #0066cc; }
         .carabineros .faction-icon { color: #0066cc; }
@@ -1330,9 +1303,6 @@
         <div class="loader-bar"></div>
     </div>
 
-    <!-- CURSOR PERSONALIZADO (solo PC) -->
-    <div class="custom-cursor" id="customCursor"></div>
-
     <!-- BARRA LATERAL DE ESTADÍSTICAS -->
     <div class="stats-sidebar" id="statsSidebar">
         <div class="stats-toggle" id="statsToggle">
@@ -1402,7 +1372,7 @@
                             <div class="settings-option-title">Reducir Animaciones</div>
                             <div class="settings-option-desc">Mejora el rendimiento reduciendo efectos visuales</div>
                         </div>
-                        <div class="toggle-switch active" data-setting="reduce-animations">
+                        <div class="toggle-switch active" id="reduceAnimationsToggle" data-setting="reduce-animations">
                             <div class="toggle-handle"></div>
                         </div>
                     </div>
@@ -1722,7 +1692,7 @@
                     <i class="fab fa-discord"></i> UNIRSE AL DISCORD
                 </a>
                 <a href="#vips" class="btn btn-vip">
-                    <i class="fas fa-crown"></i> VER PASES VIP
+                    <i class="fas fa-crown"></i> VER VIPS
                 </a>
                 <a href="normas/index.html" class="btn btn-normas" target="_blank">
                     <i class="fas fa-scroll"></i> VER NORMATIVAS
@@ -1770,6 +1740,9 @@
                     <p class="faction-description">
                         Mantén el orden y la seguridad en las calles. Protege a los ciudadanos y haz cumplir la ley.
                     </p>
+                    <button class="postular-btn" onclick="window.open('https://discord.gg/TU_LINK_DISCORD', '_blank')">
+                        POSTULAR
+                    </button>
                 </div>
 
                 <!-- PDI -->
@@ -1781,6 +1754,9 @@
                     <p class="faction-description">
                         Investiga crímenes y resuelve los casos más complejos. Desentraña misterios y busca la verdad.
                     </p>
+                    <button class="postular-btn" onclick="window.open('https://discord.gg/TU_LINK_DISCORD', '_blank')">
+                        POSTULAR
+                    </button>
                 </div>
 
                 <!-- SAMU -->
@@ -1792,6 +1768,9 @@
                     <p class="faction-description">
                         Servicio de Atención Médica de Urgencias. Proporciona cuidados médicos especializados.
                     </p>
+                    <button class="postular-btn" onclick="window.open('https://discord.gg/TU_LINK_DISCORD', '_blank')">
+                        POSTULAR
+                    </button>
                 </div>
 
                 <!-- BOMBEROS -->
@@ -1803,13 +1782,16 @@
                     <p class="faction-description">
                         Combate incendios y rescata ciudadanos en peligro. Sé un héroe en situaciones extremas.
                     </p>
+                    <button class="postular-btn" onclick="window.open('https://discord.gg/TU_LINK_DISCORD', '_blank')">
+                        POSTULAR
+                    </button>
                 </div>
             </div>
         </section>
 
         <!-- SECCIÓN VIPS -->
         <section class="section" id="vips">
-            <h2 class="section-title">PASES VIP</h2>
+            <h2 class="section-title">VIPS</h2>
             <p class="section-subtitle">Mejora tu experiencia con nuestros pases exclusivos</p>
             
             <div class="vip-grid">
@@ -1822,7 +1804,7 @@
                         <li>✔️ Tag VIP en Discord</li>
                         <li>✔️ Prioridad en eventos</li>
                     </ul>
-                    <a href="#" class="comprar-btn">COMPRAR AHORA</a>
+                    <a href="https://www.roblox.com/games/TU_JUEGO" class="comprar-btn" target="_blank">COMPRAR</a>
                 </div>
 
                 <div class="vip-card">
@@ -1834,7 +1816,7 @@
                         <li>✔️ Prioridad en whitelist</li>
                         <li>✔️ Soporte prioritario</li>
                     </ul>
-                    <a href="#" class="comprar-btn">COMPRAR AHORA</a>
+                    <a href="https://www.roblox.com/games/TU_JUEGO" class="comprar-btn" target="_blank">COMPRAR</a>
                 </div>
 
                 <div class="vip-card">
@@ -1846,7 +1828,7 @@
                         <li>✔️ Acceso a beta testing</li>
                         <li>✔️ Beneficios únicos exclusivos</li>
                     </ul>
-                    <a href="#" class="comprar-btn">COMPRAR AHORA</a>
+                    <a href="https://www.roblox.com/games/TU_JUEGO" class="comprar-btn" target="_blank">COMPRAR</a>
                 </div>
             </div>
         </section>
@@ -1944,39 +1926,6 @@
     </main>
 
     <script>
-        // CURSOR PERSONALIZADO (solo PC)
-        if (window.matchMedia("(pointer: fine)").matches) {
-            const cursor = document.getElementById('customCursor');
-            const cursorTrails = [];
-            
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-                
-                // Crear estela
-                if (Math.random() > 0.7) {
-                    const trail = document.createElement('div');
-                    trail.className = 'custom-cursor-trail';
-                    trail.style.left = e.clientX + 'px';
-                    trail.style.top = e.clientY + 'px';
-                    document.body.appendChild(trail);
-                    
-                    setTimeout(() => {
-                        trail.style.opacity = '0';
-                        setTimeout(() => trail.remove(), 300);
-                    }, 100);
-                }
-            });
-            
-            document.addEventListener('mousedown', () => {
-                cursor.classList.add('click');
-            });
-            
-            document.addEventListener('mouseup', () => {
-                cursor.classList.remove('click');
-            });
-        }
-
         // ANIMACIÓN DE CARGA
         window.addEventListener('load', function() {
             setTimeout(() => {
@@ -1992,7 +1941,7 @@
             statsSidebar.classList.toggle('hidden');
         });
 
-        // CREAR PARTÍCULAS
+        // CREAR PARTÍCULAS (sin color específico)
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 80;
@@ -2009,8 +1958,8 @@
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 
-                const colors = ['#00ffff', '#ff00ff', '#00ff88', '#0080ff', '#ff00aa'];
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                // Partículas sin color específico (blancas/transparentes)
+                particle.style.background = 'rgba(255, 255, 255, 0.7)';
                 
                 particlesContainer.appendChild(particle);
             }
@@ -2055,13 +2004,32 @@
         });
 
         // TOGGLE SWITCHES
+        const reduceAnimationsToggle = document.getElementById('reduceAnimationsToggle');
+        
         document.querySelectorAll('.toggle-switch').forEach(toggle => {
             toggle.addEventListener('click', () => {
                 toggle.classList.toggle('active');
                 const setting = toggle.dataset.setting;
                 
                 if (setting === 'reduce-animations') {
-                    document.body.style.setProperty('--animation-speed', toggle.classList.contains('active') ? '0.1s' : '0.4s');
+                    const animationsReduced = toggle.classList.contains('active');
+                    
+                    // Aplicar o quitar animaciones según el estado del toggle
+                    if (animationsReduced) {
+                        // Desactivar animaciones
+                        document.querySelectorAll('*').forEach(el => {
+                            el.style.animation = 'none';
+                            el.style.transition = 'none';
+                        });
+                        document.body.style.setProperty('--animation-speed', '0s');
+                    } else {
+                        // Reactivar animaciones
+                        document.querySelectorAll('*').forEach(el => {
+                            el.style.animation = '';
+                            el.style.transition = '';
+                        });
+                        document.body.style.setProperty('--animation-speed', '0.4s');
+                    }
                 }
                 
                 if (setting === 'low-power') {
@@ -2148,8 +2116,8 @@
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 
-                const colors = ['#00ffff', '#ff00ff', '#00ff88', '#0080ff', '#ff00aa'];
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                // Partículas sin color específico (blancas/transparentes)
+                particle.style.background = 'rgba(255, 255, 255, 0.7)';
                 
                 particlesContainer.appendChild(particle);
             }
