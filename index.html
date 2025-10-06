@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/2331/2331961.png">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -115,40 +116,14 @@
             100% { left: 100%; }
         }
 
-        /* FONDO ANIMADO CON PARTÍCULAS */
-        .background-animation {
+        /* FONDO CON PARTÍCULAS */
+        #particles-js {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            z-index: -3;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.6) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.5) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.4) 0%, transparent 50%);
-            animation: backgroundShift 15s ease-in-out infinite alternate;
-        }
-
-        .particles {
-            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            animation: floatParticle 20s infinite linear;
-            opacity: 0;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            z-index: -1;
         }
 
         /* BOTÓN DE CONFIGURACIÓN */
@@ -196,78 +171,6 @@
         @keyframes rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-
-        /* BARRA LATERAL DE ESTADÍSTICAS */
-        .stats-sidebar {
-            position: fixed;
-            top: 50%;
-            left: 20px;
-            transform: translateY(-50%);
-            background: rgba(10, 15, 35, 0.9);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 20px;
-            border: 2px solid var(--primary);
-            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.6);
-            z-index: 998;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            min-width: 200px;
-            transition: all 0.4s ease;
-        }
-
-        .stats-sidebar.hidden {
-            transform: translateY(-50%) translateX(-100%);
-            opacity: 0;
-        }
-
-        .stats-toggle {
-            position: absolute;
-            top: 50%;
-            right: -40px;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            background: var(--primary);
-            border-radius: 0 10px 10px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--darkest);
-            font-size: 1.2rem;
-            box-shadow: 5px 0 10px rgba(0, 255, 255, 0.5);
-        }
-
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .stat-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-        }
-
-        .stat-value {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #ccccff;
-            text-align: center;
         }
 
         /* MODAL DE CONFIGURACIÓN */
@@ -631,37 +534,9 @@
             box-shadow: 0 10px 30px rgba(255, 68, 68, 0.4);
         }
 
-        @keyframes floatParticle {
-            0% {
-                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-                transform: scale(1);
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-100px) translateX(100px) rotate(360deg) scale(0);
-                opacity: 0;
-            }
-        }
-
-        @keyframes backgroundShift {
-            0% { 
-                transform: scale(1) rotate(0deg);
-                filter: hue-rotate(0deg);
-            }
-            50% {
-                transform: scale(1.1) rotate(0.5deg);
-                filter: hue-rotate(180deg);
-            }
-            100% { 
-                transform: scale(1.05) rotate(-0.5deg);
-                filter: hue-rotate(360deg);
-            }
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         /* BARRA DE NAVEGACIÓN ÉPICA */
@@ -723,11 +598,6 @@
             animation: gradientFlow 4s ease infinite;
             text-transform: uppercase;
             letter-spacing: 3px;
-        }
-
-        @keyframes gradientFlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
         }
 
         .nav-menu {
@@ -1253,6 +1123,30 @@
             transition: width 0.3s ease;
         }
 
+        /* MENSAJES DE CARGA */
+        .loading-message {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            color: var(--primary);
+            padding: 15px 25px;
+            border-radius: 10px;
+            border: 1px solid var(--primary);
+            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.5);
+            z-index: 1002;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+
+        .loading-message.show {
+            opacity: 1;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .nav-container {
@@ -1288,10 +1182,6 @@
             .staff-grid {
                 grid-template-columns: 1fr;
             }
-
-            .stats-sidebar {
-                display: none;
-            }
         }
     </style>
 </head>
@@ -1303,28 +1193,8 @@
         <div class="loader-bar"></div>
     </div>
 
-    <!-- BARRA LATERAL DE ESTADÍSTICAS -->
-    <div class="stats-sidebar" id="statsSidebar">
-        <div class="stats-toggle" id="statsToggle">
-            <i class="fas fa-chart-bar"></i>
-        </div>
-        <div class="stat-item">
-            <div class="stat-value">1,254</div>
-            <div class="stat-label">JUGADORES ACTIVOS</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-value">89%</div>
-            <div class="stat-label">SATISFACCIÓN</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-value">24/7</div>
-            <div class="stat-label">SERVIDOR ACTIVO</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-value">256</div>
-            <div class="stat-label">MIEMBROS VIP</div>
-        </div>
-    </div>
+    <!-- MENSAJES DE CARGA -->
+    <div class="loading-message" id="loadingMessage"></div>
 
     <!-- BOTÓN DE CONFIGURACIÓN -->
     <div class="settings-btn" id="settingsBtn">
@@ -1656,9 +1526,8 @@
     <!-- LOADING BAR -->
     <div class="loading-bar" id="loadingBar"></div>
 
-    <!-- FONDO ANIMADO -->
-    <div class="background-animation"></div>
-    <div class="particles" id="particles"></div>
+    <!-- FONDO CON PARTÍCULAS -->
+    <div id="particles-js"></div>
 
     <!-- BARRA DE NAVEGACIÓN -->
     <nav class="navbar" id="navbar">
@@ -1933,36 +1802,78 @@
             }, 1500);
         });
 
-        // BARRA LATERAL DE ESTADÍSTICAS
-        const statsSidebar = document.getElementById('statsSidebar');
-        const statsToggle = document.getElementById('statsToggle');
-        
-        statsToggle.addEventListener('click', () => {
-            statsSidebar.classList.toggle('hidden');
-        });
-
-        // CREAR PARTÍCULAS (sin color específico)
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 80;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
+        // INICIALIZAR PARTÍCULAS
+        function initParticles() {
+            if (typeof particlesJS !== 'undefined') {
+                const particleCount = window.innerWidth < 768 ? 30 : 60;
                 
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 15) + 's';
-                
-                const size = 2 + Math.random() * 4;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                
-                // Partículas sin color específico (blancas/transparentes)
-                particle.style.background = 'rgba(255, 255, 255, 0.7)';
-                
-                particlesContainer.appendChild(particle);
+                particlesJS('particles-js', {
+                    particles: {
+                        number: { 
+                            value: particleCount, 
+                            density: { enable: true, value_area: 1000 } 
+                        },
+                        color: { value: "#6366f1" },
+                        shape: { 
+                            type: "circle",
+                            stroke: { width: 0, color: "#000000" }
+                        },
+                        opacity: { 
+                            value: 0.4, 
+                            random: true,
+                            anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+                        },
+                        size: { 
+                            value: 3, 
+                            random: true,
+                            anim: { enable: true, speed: 2, size_min: 0.5, sync: false }
+                        },
+                        line_linked: {
+                            enable: true,
+                            distance: 180,
+                            color: "#ec4899",
+                            opacity: 0.3,
+                            width: 1
+                        },
+                        move: {
+                            enable: true,
+                            speed: 1.5,
+                            direction: "none",
+                            random: true,
+                            straight: false,
+                            out_mode: "out",
+                            bounce: false,
+                            attract: { enable: false, rotateX: 600, rotateY: 1200 }
+                        }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: {
+                            onhover: { enable: true, mode: "repulse" },
+                            onclick: { enable: true, mode: "push" },
+                            resize: true
+                        },
+                        modes: {
+                            repulse: { distance: 120, duration: 0.4 },
+                            push: { particles_nb: 3 }
+                        }
+                    },
+                    retina_detect: true
+                });
+            } else {
+                console.warn('particles.js not loaded');
             }
+        }
+
+        // MOSTRAR MENSAJE DE CARGA
+        function showLoadingMessage(message) {
+            const loadingMessage = document.getElementById('loadingMessage');
+            loadingMessage.textContent = message;
+            loadingMessage.classList.add('show');
+            
+            setTimeout(() => {
+                loadingMessage.classList.remove('show');
+            }, 2000);
         }
 
         // MODAL DE CONFIGURACIÓN
@@ -1973,6 +1884,7 @@
 
         settingsBtn.addEventListener('click', () => {
             settingsModal.classList.add('active');
+            showLoadingMessage('Cargando configuración...');
         });
 
         settingsClose.addEventListener('click', () => {
@@ -2000,6 +1912,8 @@
                 // Agregar clase activa a la pestaña seleccionada
                 tab.classList.add('active');
                 document.getElementById(tabId).classList.add('active');
+                
+                showLoadingMessage(`Cargando ${tab.textContent.trim()}...`);
             });
         });
 
@@ -2039,6 +1953,8 @@
                         document.querySelectorAll('.particle').forEach(p => p.style.display = 'block');
                     }
                 }
+                
+                showLoadingMessage('Configuración actualizada');
             });
         });
 
@@ -2055,6 +1971,8 @@
                 if (setting === 'background-color') {
                     document.documentElement.style.setProperty('--darkest', e.target.value);
                 }
+                
+                showLoadingMessage('Color actualizado');
             });
         });
 
@@ -2083,9 +2001,16 @@
                 // Actualizar valor
                 if (slider.dataset.setting === 'particles') {
                     value.textContent = `${Math.round(percentage)}%`;
-                    const particleCount = Math.floor((percentage / 100) * 120);
-                    document.getElementById('particles').innerHTML = '';
-                    createParticlesWithCount(particleCount);
+                    // Actualizar partículas
+                    if (typeof particlesJS !== 'undefined') {
+                        particlesJS('particles-js', {
+                            particles: {
+                                number: { 
+                                    value: Math.floor((percentage / 100) * 100)
+                                }
+                            }
+                        });
+                    }
                 } else if (slider.dataset.setting === 'font-size') {
                     const sizes = ['Pequeño', 'Mediano', 'Grande', 'Muy Grande'];
                     const sizeIndex = Math.floor((percentage / 100) * 3);
@@ -2098,30 +2023,9 @@
 
             document.addEventListener('mouseup', () => {
                 isDragging = false;
+                showLoadingMessage('Configuración actualizada');
             });
         });
-
-        function createParticlesWithCount(count) {
-            const particlesContainer = document.getElementById('particles');
-            
-            for (let i = 0; i < count; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 15) + 's';
-                
-                const size = 2 + Math.random() * 4;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                
-                // Partículas sin color específico (blancas/transparentes)
-                particle.style.background = 'rgba(255, 255, 255, 0.7)';
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
 
         // SELECT PERSONALIZADO
         document.querySelectorAll('.custom-select').forEach(select => {
@@ -2136,6 +2040,7 @@
                 item.addEventListener('click', () => {
                     selected.querySelector('span').textContent = item.textContent;
                     items.style.display = 'none';
+                    showLoadingMessage(`Tema cambiado a ${item.textContent}`);
                 });
             });
             
@@ -2150,6 +2055,7 @@
         resetBtn.addEventListener('click', () => {
             if (confirm('¿Estás seguro de que quieres restablecer todas las configuraciones?')) {
                 location.reload();
+                showLoadingMessage('Configuración restablecida');
             }
         });
 
@@ -2230,6 +2136,7 @@
                     const targetSection = document.querySelector(targetId);
                     
                     if (targetSection) {
+                        showLoadingMessage(`Cargando ${this.textContent.trim()}...`);
                         window.scrollTo({
                             top: targetSection.offsetTop - 100,
                             behavior: 'smooth'
@@ -2241,7 +2148,7 @@
 
         // INICIALIZAR
         document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
+            initParticles();
             
             window.addEventListener('scroll', function() {
                 updateLoadingBar();
