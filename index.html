@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chilenos RP ER:LC - Facciones Legales</title>
+    <title>Chilenos RP ER:LC - Liberty County</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/2331/2331961.png">
     <style>
         * {
             margin: 0;
@@ -100,18 +101,58 @@
             }
         }
 
-        /* CONTENIDO PRINCIPAL */
-        .main-content {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+        /* BARRA DE NAVEGACIÓN */
+        .navbar {
+            background: rgba(10, 15, 35, 0.98);
+            backdrop-filter: blur(25px);
+            border-bottom: 3px solid var(--primary);
+            box-shadow: 0 8px 50px rgba(0, 255, 255, 0.6);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
         }
 
-        .section-title {
+        .navbar.scrolled {
+            background: rgba(5, 10, 25, 0.99);
+            padding: 8px 0;
+            box-shadow: 0 15px 60px rgba(0, 255, 255, 0.8);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+            animation: logoRotate 20s linear infinite;
+        }
+
+        @keyframes logoRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo-text {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            text-align: center;
-            margin-bottom: 50px;
+            font-size: 2rem;
+            font-weight: 900;
             background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -126,12 +167,174 @@
             50% { background-position: 100% 50%; }
         }
 
-        /* GRID DE FACCIONES MEGA ÉPICO */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 12px 18px;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .nav-link:hover::before {
+            left: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background: rgba(0, 255, 255, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.4);
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        .main-content {
+            margin-top: 120px;
+            padding: 40px 20px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(30px);
+            border-radius: 30px;
+            padding: 70px 40px;
+            margin: 0 auto 60px auto;
+            max-width: 1200px;
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            box-shadow: 0 25px 70px rgba(0, 255, 255, 0.4);
+            animation: heroFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes heroFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;
+            animation: gradientFlow 3s ease infinite;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .section-subtitle {
+            font-size: 1.6rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ccccff;
+            font-weight: 600;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #aaccff;
+            line-height: 1.6;
+        }
+
+        /* BOTONES ÉPICOS */
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 35px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 15px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-discord {
+            background: linear-gradient(45deg, #5865F2, #7289DA);
+            color: white;
+        }
+
+        .btn-robux {
+            background: linear-gradient(45deg, #ff4444, #ff8800);
+            color: white;
+        }
+
+        .btn-normas {
+            background: linear-gradient(45deg, var(--accent), #00ccff);
+            color: white;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            filter: brightness(1.2);
+        }
+
+        /* GRID DE FACCIONES */
         .factions-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         .faction-card {
@@ -141,38 +344,21 @@
             padding: 30px;
             border: 2px solid transparent;
             box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.5s ease;
             position: relative;
             overflow: hidden;
             cursor: pointer;
         }
 
-        .faction-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .faction-card:hover::before {
-            left: 100%;
-        }
-
         .faction-card:hover {
-            transform: translateY(-15px) scale(1.03);
+            transform: translateY(-10px) scale(1.03);
             box-shadow: 0 25px 60px rgba(0, 255, 255, 0.4);
             border-color: var(--primary);
         }
 
-        /* EFECTO ESPECIAL AL TOCAR - CAMBIO DE COLOR */
         .faction-card:active {
             background: linear-gradient(135deg, rgba(0, 255, 255, 0.15), rgba(255, 0, 255, 0.1));
             transform: scale(0.98);
-            transition: all 0.1s ease;
         }
 
         .faction-icon {
@@ -193,12 +379,6 @@
             text-align: center;
             margin-bottom: 15px;
             color: var(--primary);
-            transition: all 0.4s ease;
-        }
-
-        .faction-card:hover .faction-title {
-            color: var(--accent);
-            text-shadow: 0 0 15px var(--accent);
         }
 
         .faction-description {
@@ -206,15 +386,8 @@
             color: #ccccff;
             line-height: 1.6;
             margin-bottom: 25px;
-            font-size: 1.1rem;
-            transition: all 0.4s ease;
         }
 
-        .faction-card:hover .faction-description {
-            color: #ffffff;
-        }
-
-        /* BOTÓN POSTULAR ÉPICO */
         .postular-btn {
             display: block;
             width: 100%;
@@ -229,197 +402,394 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border: none;
-            cursor: pointer;
-        }
-
-        .postular-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .postular-btn:hover::before {
-            left: 100%;
         }
 
         .postular-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(0, 255, 255, 0.5);
-            background: linear-gradient(45deg, var(--secondary), var(--primary));
         }
 
-        /* COLORES ESPECÍFICOS PARA CADA FACCIÓN */
-        .carabineros {
-            border-color: #0066cc;
+        /* COLORES FACCIONES */
+        .carabineros { border-color: #0066cc; }
+        .carabineros .faction-icon { color: #0066cc; }
+        .carabineros .postular-btn { background: linear-gradient(45deg, #0066cc, #0099ff); }
+
+        .pdi { border-color: #ff6600; }
+        .pdi .faction-icon { color: #ff6600; }
+        .pdi .postular-btn { background: linear-gradient(45deg, #ff6600, #ff9900); }
+
+        .samu { border-color: #ff4444; }
+        .samu .faction-icon { color: #ff4444; }
+        .samu .postular-btn { background: linear-gradient(45deg, #ff4444, #ff6666); }
+
+        .bomberos { border-color: #ff3300; }
+        .bomberos .faction-icon { color: #ff3300; }
+        .bomberos .postular-btn { background: linear-gradient(45deg, #ff3300, #ff6600); }
+
+        .fiscalia { border-color: #9933cc; }
+        .fiscalia .faction-icon { color: #9933cc; }
+        .fiscalia .postular-btn { background: linear-gradient(45deg, #9933cc, #cc66ff); }
+
+        /* SECCIÓN NORMAS */
+        .normas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
         }
 
-        .carabineros .faction-icon {
-            color: #0066cc;
+        .norma-card {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            transition: all 0.4s ease;
         }
 
-        .carabineros .postular-btn {
-            background: linear-gradient(45deg, #0066cc, #0099ff);
+        .norma-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.3);
+            border-color: var(--primary);
         }
 
-        .pdi {
-            border-color: #ff6600;
+        .norma-title {
+            color: var(--accent);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .pdi .faction-icon {
-            color: #ff6600;
+        /* SECCIÓN PASES */
+        .pases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
         }
 
-        .pdi .postular-btn {
-            background: linear-gradient(45deg, #ff6600, #ff9900);
+        .pase-card {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            text-align: center;
+            transition: all 0.4s ease;
         }
 
-        .samu {
-            border-color: #ff4444;
+        .pase-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+            border-color: gold;
         }
 
-        .samu .faction-icon {
-            color: #ff4444;
+        .pase-precio {
+            font-size: 2rem;
+            color: gold;
+            font-weight: 700;
+            margin: 15px 0;
         }
 
-        .samu .postular-btn {
-            background: linear-gradient(45deg, #ff4444, #ff6666);
+        .pase-beneficios {
+            list-style: none;
+            margin: 20px 0;
         }
 
-        .bomberos {
-            border-color: #ff3300;
+        .pase-beneficios li {
+            margin: 10px 0;
+            color: #ccccff;
         }
 
-        .bomberos .faction-icon {
-            color: #ff3300;
+        .comprar-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, gold, orange);
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s ease;
         }
 
-        .bomberos .postular-btn {
-            background: linear-gradient(45deg, #ff3300, #ff6600);
+        .comprar-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
         }
 
-        .fiscalia {
-            border-color: #9933cc;
-        }
-
-        .fiscalia .faction-icon {
-            color: #9933cc;
-        }
-
-        .fiscalia .postular-btn {
-            background: linear-gradient(45deg, #9933cc, #cc66ff);
-        }
-
-        /* EFECTO DE ACTIVACIÓN AL TOCAR */
-        .faction-card.active {
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.15));
-            border-color: var(--accent);
-            box-shadow: 0 0 40px var(--accent);
+        /* LOADING BAR */
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            z-index: 1001;
+            transition: width 0.3s ease;
         }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
             .section-title {
                 font-size: 2.5rem;
             }
 
-            .factions-grid {
-                grid-template-columns: 1fr;
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
             }
 
-            .faction-card {
-                padding: 25px;
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .factions-grid,
+            .normas-grid,
+            .pases-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <!-- LOADING BAR -->
+    <div class="loading-bar" id="loadingBar"></div>
+
     <!-- FONDO ANIMADO -->
     <div class="background-animation"></div>
     <div class="particles" id="particles"></div>
 
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/2331/2331961.png" alt="Logo Chilenos RP" class="logo-img">
+                <div class="logo-text">CHILENOS RP ER:LC</div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#inicio" class="nav-link">INICIO</a></li>
+                <li class="nav-item"><a href="#normas" class="nav-link">NORMAS</a></li>
+                <li class="nav-item"><a href="#facciones" class="nav-link">FACCIONES</a></li>
+                <li class="nav-item"><a href="#pases" class="nav-link">PASES</a></li>
+                <li class="nav-item"><a href="#robux" class="nav-link">RUBUX</a></li>
+                <li class="nav-item"><a href="#discord" class="nav-link">DISCORD</a></li>
+                <li class="nav-item"><a href="#staff" class="nav-link">STAFF</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- CONTENIDO PRINCIPAL -->
     <main class="main-content">
-        <h1 class="section-title">FACCIONES LEGALES</h1>
-        
-        <div class="factions-grid">
-            <!-- CARABINEROS -->
-            <div class="faction-card carabineros">
-                <div class="faction-icon">
-                    <i class="fas fa-police-car"></i>
-                </div>
-                <h2 class="faction-title">CARABINEROS</h2>
-                <p class="faction-description">
-                    Mantén el orden y la seguridad en las calles de Chile. Protege a los ciudadanos y haz cumplir la ley con honor y disciplina.
-                </p>
-                <a href="https://discord.gg/TU_LINK_CARABINEROS" class="postular-btn" target="_blank">
-                    POSTULAR
+        <!-- SECCIÓN INICIO -->
+        <section class="section" id="inicio">
+            <h1 class="section-title">CHILENOS RP ER:LC</h1>
+            <p class="section-subtitle">Liberty County - El mejor servidor de roleplay chileno</p>
+            <p class="section-description">Únete a nuestra comunidad y vive la experiencia más épica de roleplay</p>
+            
+            <div class="cta-buttons">
+                <a href="https://discord.gg/TU_LINK_DISCORD" class="btn btn-discord" target="_blank">
+                    <i class="fab fa-discord"></i> UNIRSE AL DISCORD
+                </a>
+                <a href="#pases" class="btn btn-robux">
+                    <i class="fas fa-gem"></i> COMPRAR PASES
+                </a>
+                <a href="#normas" class="btn btn-normas">
+                    <i class="fas fa-scroll"></i> VER NORMATIVAS
                 </a>
             </div>
+        </section>
 
-            <!-- PDI -->
-            <div class="faction-card pdi">
-                <div class="faction-icon">
-                    <i class="fas fa-search"></i>
+        <!-- SECCIÓN NORMAS -->
+        <section class="section" id="normas">
+            <h2 class="section-title">NORMATIVAS</h2>
+            <p class="section-subtitle">Conoce las reglas de nuestra comunidad</p>
+            
+            <div class="normas-grid">
+                <div class="norma-card">
+                    <h3 class="norma-title"><i class="fas fa-gavel"></i> Normas Generales</h3>
+                    <p>Respeto entre jugadores, no metagaming, roleplay de calidad y comunicación apropiada.</p>
                 </div>
-                <h2 class="faction-title">PDI</h2>
-                <p class="faction-description">
-                    Investiga crímenes y resuelve los casos más complejos. Desentraña misterios y busca la verdad mediante la investigación.
-                </p>
-                <a href="https://discord.gg/TU_LINK_PDI" class="postular-btn" target="_blank">
-                    POSTULAR
-                </a>
+                <div class="norma-card">
+                    <h3 class="norma-title"><i class="fas fa-shield-alt"></i> Normas de Staff</h3>
+                    <p>Imparcialidad, conocimiento de reglas y actividad regular requerida.</p>
+                </div>
+                <div class="norma-card">
+                    <h3 class="norma-title"><i class="fas fa-gamepad"></i> Normas de Juego</h3>
+                    <p>Prohibido RDM, VDM, respetar nueva vida rule y mantener realismo.</p>
+                </div>
+                <div class="norma-card">
+                    <h3 class="norma-title"><i class="fas fa-balance-scale"></i> Sanciones</h3>
+                    <p>Sistema de warns acumulativos y proceso de apelaciones por Discord.</p>
+                </div>
             </div>
+        </section>
 
-            <!-- SAMU -->
-            <div class="faction-card samu">
-                <div class="faction-icon">
-                    <i class="fas fa-ambulance"></i>
+        <!-- SECCIÓN FACCIONES -->
+        <section class="section" id="facciones">
+            <h2 class="section-title">FACCIONES LEGALES</h2>
+            <p class="section-subtitle">Únete a nuestras facciones y sirve a la comunidad</p>
+            
+            <div class="factions-grid">
+                <!-- CARABINEROS -->
+                <div class="faction-card carabineros">
+                    <div class="faction-icon">
+                        <i class="fas fa-police-car"></i>
+                    </div>
+                    <h3 class="faction-title">CARABINEROS</h3>
+                    <p class="faction-description">
+                        Mantén el orden y la seguridad en las calles de Chile. Protege a los ciudadanos y haz cumplir la ley.
+                    </p>
+                    <a href="https://discord.gg/TU_LINK_CARABINEROS" class="postular-btn" target="_blank">
+                        POSTULAR
+                    </a>
                 </div>
-                <h2 class="faction-title">SAMU</h2>
-                <p class="faction-description">
-                    Servicio de Atención Médica de Urgencias. Proporciona cuidados médicos especializados en situaciones críticas y salva vidas.
-                </p>
-                <a href="https://discord.gg/TU_LINK_SAMU" class="postular-btn" target="_blank">
-                    POSTULAR
-                </a>
-            </div>
 
-            <!-- BOMBEROS -->
-            <div class="faction-card bomberos">
-                <div class="faction-icon">
-                    <i class="fas fa-fire-extinguisher"></i>
+                <!-- PDI -->
+                <div class="faction-card pdi">
+                    <div class="faction-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="faction-title">PDI</h3>
+                    <p class="faction-description">
+                        Investiga crímenes y resuelve los casos más complejos. Desentraña misterios y busca la verdad.
+                    </p>
+                    <a href="https://discord.gg/TU_LINK_PDI" class="postular-btn" target="_blank">
+                        POSTULAR
+                    </a>
                 </div>
-                <h2 class="faction-title">BOMBEROS</h2>
-                <p class="faction-description">
-                    Combate incendios y rescata ciudadanos en peligro. Sé un héroe en las situaciones más extremas y de alto riesgo.
-                </p>
-                <a href="https://discord.gg/TU_LINK_BOMBEROS" class="postular-btn" target="_blank">
-                    POSTULAR
-                </a>
-            </div>
 
-            <!-- FISCALÍA -->
-            <div class="faction-card fiscalia">
-                <div class="faction-icon">
-                    <i class="fas fa-gavel"></i>
+                <!-- SAMU -->
+                <div class="faction-card samu">
+                    <div class="faction-icon">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <h3 class="faction-title">SAMU</h3>
+                    <p class="faction-description">
+                        Servicio de Atención Médica de Urgencias. Proporciona cuidados médicos especializados.
+                    </p>
+                    <a href="https://discord.gg/TU_LINK_SAMU" class="postular-btn" target="_blank">
+                        POSTULAR
+                    </a>
                 </div>
-                <h2 class="faction-title">FISCALÍA</h2>
-                <p class="faction-description">
-                    Administra la justicia y procesa casos legales. Representa al estado en procesos judiciales importantes y complejos.
-                </p>
-                <a href="https://discord.gg/TU_LINK_FISCALIA" class="postular-btn" target="_blank">
-                    POSTULAR
+
+                <!-- BOMBEROS -->
+                <div class="faction-card bomberos">
+                    <div class="faction-icon">
+                        <i class="fas fa-fire-extinguisher"></i>
+                    </div>
+                    <h3 class="faction-title">BOMBEROS</h3>
+                    <p class="faction-description">
+                        Combate incendios y rescata ciudadanos en peligro. Sé un héroe en situaciones extremas.
+                    </p>
+                    <a href="https://discord.gg/TU_LINK_BOMBEROS" class="postular-btn" target="_blank">
+                        POSTULAR
+                    </a>
+                </div>
+
+                <!-- FISCALÍA -->
+                <div class="faction-card fiscalia">
+                    <div class="faction-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3 class="faction-title">FISCALÍA</h3>
+                    <p class="faction-description">
+                        Administra la justicia y procesa casos legales. Representa al estado en procesos judiciales.
+                    </p>
+                    <a href="https://discord.gg/TU_LINK_FISCALIA" class="postular-btn" target="_blank">
+                        POSTULAR
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN PASES -->
+        <section class="section" id="pases">
+            <h2 class="section-title">PASES PREMIUM</h2>
+            <p class="section-subtitle">Mejora tu experiencia con nuestros pases exclusivos</p>
+            
+            <div class="pases-grid">
+                <div class="pase-card">
+                    <h3>PASE BÁSICO</h3>
+                    <div class="pase-precio">$5.000 CLP</div>
+                    <ul class="pase-beneficios">
+                        <li>✔️ Acceso a vehículos exclusivos</li>
+                        <li>✔️ Ropa especial</li>
+                        <li>✔️ Tag en Discord</li>
+                        <li>❌ Casa exclusiva</li>
+                    </ul>
+                    <a href="#" class="comprar-btn">COMPRAR</a>
+                </div>
+
+                <div class="pase-card">
+                    <h3>PASE PREMIUM</h3>
+                    <div class="pase-precio">$10.000 CLP</div>
+                    <ul class="pase-beneficios">
+                        <li>✔️ Todos los beneficios Básico</li>
+                        <li>✔️ Casa exclusiva</li>
+                        <li>✔️ Prioridad en whitelist</li>
+                        <li>✔️ Soporte prioritario</li>
+                    </ul>
+                    <a href="#" class="comprar-btn">COMPRAR</a>
+                </div>
+
+                <div class="pase-card">
+                    <h3>PASE ÉLITE</h3>
+                    <div class="pase-precio">$15.000 CLP</div>
+                    <ul class="pase-beneficios">
+                        <li>✔️ Todos los beneficios Premium</li>
+                        <li>✔️ Personaje personalizado</li>
+                        <li>✔️ Acceso a beta testing</li>
+                        <li>✔️ Beneficios únicos</li>
+                    </ul>
+                    <a href="#" class="comprar-btn">COMPRAR</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN RUBUX -->
+        <section class="section" id="robux">
+            <h2 class="section-title">RUBUX</h2>
+            <p class="section-subtitle">Sistema de economía y recompensas</p>
+            <p class="section-description">
+                Próximamente: Sistema de Rubux para compras internas, recompensas y economía del servidor.
+            </p>
+        </section>
+
+        <!-- SECCIÓN DISCORD -->
+        <section class="section" id="discord">
+            <h2 class="section-title">DISCORD</h2>
+            <p class="section-subtitle">Únete a nuestra comunidad</p>
+            <div class="cta-buttons">
+                <a href="https://discord.gg/TU_LINK_DISCORD" class="btn btn-discord" target="_blank">
+                    <i class="fab fa-discord"></i> UNIRSE AL SERVIDOR
                 </a>
             </div>
-        </div>
+        </section>
+
+        <!-- SECCIÓN STAFF -->
+        <section class="section" id="staff">
+            <h2 class="section-title">STAFF</h2>
+            <p class="section-subtitle">Nuestro equipo de administración</p>
+            <p class="section-description">
+                Conoce a nuestro equipo de staff dedicado a mantener un ambiente divertido y justo para todos.
+            </p>
+        </section>
+
     </main>
 
     <script>
@@ -440,40 +810,42 @@
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 
-                const colors = ['#00ffff', '#ff00ff', '#00ff88', '#0080ff', '#ff4444'];
+                const colors = ['#00ffff', '#ff00ff', '#00ff88', '#0080ff'];
                 particle.style.background = colors[Math.floor(Math.random() * colors.length)];
                 
                 particlesContainer.appendChild(particle);
             }
         }
 
-        // EFECTO AL TOCAR LAS FACCIONES
+        // LOADING BAR AL SCROLL
+        function updateLoadingBar() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("loadingBar").style.width = scrolled + "%";
+        }
+
+        // NAVBAR SCROLL EFFECT
+        function handleNavbarScroll() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        // INICIALIZAR
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
-
-            const factionCards = document.querySelectorAll('.faction-card');
             
-            factionCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    // Remover clase active de todas las tarjetas
-                    factionCards.forEach(c => c.classList.remove('active'));
-                    
-                    // Agregar clase active a la tarjeta clickeada
-                    this.classList.add('active');
-                    
-                    // Efecto de sonido (opcional)
-                    // const clickSound = new Audio('click-sound.mp3');
-                    // clickSound.play();
-                    
-                    // Remover la clase active después de 1 segundo
-                    setTimeout(() => {
-                        this.classList.remove('active');
-                    }, 1000);
-                });
+            window.addEventListener('scroll', function() {
+                updateLoadingBar();
+                handleNavbarScroll();
             });
 
-            // Efecto de escritura para el título
-            const title = document.querySelector('.section-title');
+            // Efecto de escritura para el título principal
+            const title = document.querySelector('#inicio .section-title');
             const originalText = title.textContent;
             title.textContent = '';
             let i = 0;
@@ -488,45 +860,6 @@
             
             setTimeout(typeWriter, 500);
         });
-
-        // EFECTO DE PARTICULAS AL PASAR MOUSE SOBRE FACCIONES
-        const factionCards = document.querySelectorAll('.faction-card');
-        
-        factionCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                // Crear partículas adicionales al hacer hover
-                createHoverParticles(this);
-            });
-        });
-
-        function createHoverParticles(element) {
-            const rect = element.getBoundingClientRect();
-            const particlesContainer = document.getElementById('particles');
-            
-            for (let i = 0; i < 5; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.position = 'fixed';
-                particle.style.left = (rect.left + Math.random() * rect.width) + 'px';
-                particle.style.top = (rect.top + Math.random() * rect.height) + 'px';
-                particle.style.animation = 'floatParticle 3s ease-out forwards';
-                particle.style.animationDelay = '0s';
-                
-                const size = 2 + Math.random() * 3;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                
-                const colors = ['#00ffff', '#ff00ff', '#00ff88'];
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                
-                particlesContainer.appendChild(particle);
-                
-                // Remover partícula después de la animación
-                setTimeout(() => {
-                    particle.remove();
-                }, 3000);
-            }
-        }
     </script>
 </body>
 </html>
