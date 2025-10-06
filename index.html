@@ -1,1 +1,332 @@
-ind
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chilenos RP ER:LC - Liberty County</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/2331/2331961.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* FONDO ANIMADO ÉPICO */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.15) 0%, transparent 50%);
+            animation: backgroundShift 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundShift {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(1deg); }
+        }
+
+        /* BARRA DE NAVEGACIÓN ÉPICA */
+        .navbar {
+            background: rgba(10, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #00ffff;
+            box-shadow: 0 4px 30px rgba(0, 255, 255, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar:hover {
+            background: rgba(15, 25, 55, 0.98);
+            box-shadow: 0 8px 40px rgba(0, 255, 255, 0.5);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; }
+            to { text-shadow: 0 0 20px #0080ff, 0 0 30px #0080ff; }
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00ffff, #0080ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            transition: left 0.3s ease;
+        }
+
+        .nav-link:hover::before {
+            left: 100%;
+        }
+
+        .nav-link:hover {
+            color: #00ffff;
+            background: rgba(0, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        .main-content {
+            margin-top: 100px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin: 0 auto;
+            max-width: 1000px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #ccccff;
+        }
+
+        /* BOTONES ANIMADOS */
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-discord {
+            background: linear-gradient(45deg, #5865F2, #7289DA);
+            color: white;
+        }
+
+        .btn-robux {
+            background: linear-gradient(45deg, #ff4444, #ff8800);
+            color: white;
+        }
+
+        .btn-normas {
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- FONDO ANIMADO -->
+    <div class="background-animation"></div>
+
+    <!-- BARRA DE NAVEGACIÓN ÉPICA -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/2331/2331961.png" alt="Logo Chilenos RP" class="logo-img">
+                <div class="logo-text">CHILENOS RP ER:LC</div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#inicio" class="nav-link"><i class="fas fa-home"></i> INICIO</a></li>
+                <li class="nav-item"><a href="#normas" class="nav-link"><i class="fas fa-book"></i> NORMATIVAS</a></li>
+                <li class="nav-item"><a href="#pases" class="nav-link"><i class="fas fa-star"></i> PASES ROBUX</a></li>
+                <li class="nav-item"><a href="#discord" class="nav-link"><i class="fab fa-discord"></i> DISCORD</a></li>
+                <li class="nav-item"><a href="#staff" class="nav-link"><i class="fas fa-users"></i> STAFF</a></li>
+                <li class="nav-item"><a href="#galeria" class="nav-link"><i class="fas fa-images"></i> GALERÍA</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <section class="hero-section">
+            <h1 class="hero-title">CHILENOS RP ER:LC</h1>
+            <p class="hero-subtitle">Liberty County - El mejor servidor de roleplay chileno</p>
+            <p>Únete a nuestra comunidad y vive la experiencia más épica de roleplay</p>
+            
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-discord">
+                    <i class="fab fa-discord"></i> UNIRSE AL DISCORD
+                </a>
+                <a href="#" class="btn btn-robux">
+                    <i class="fas fa-gem"></i> COMPRAR PASES
+                </a>
+                <a href="#" class="btn btn-normas">
+                    <i class="fas fa-scroll"></i> VER NORMATIVAS
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Efectos adicionales para la navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(5, 10, 25, 0.98)';
+                navbar.style.padding = '10px 0';
+            } else {
+                navbar.style.background = 'rgba(10, 15, 35, 0.95)';
+                navbar.style.padding = '15px 0';
+            }
+        });
+
+        // Efecto de escritura para el título
+        const title = document.querySelector('.hero-title');
+        const originalText = title.textContent;
+        title.textContent = '';
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < originalText.length) {
+                title.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        // Iniciar efecto después de cargar la página
+        setTimeout(typeWriter, 1000);
+    </script>
+</body>
+</html>
