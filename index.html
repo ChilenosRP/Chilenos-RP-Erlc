@@ -28,7 +28,32 @@
             --orange: #ff6d00;
             --animation-speed: 0.4s;
             --font-size: 100%;
-            --cursor-size: normal;
+        }
+
+        /* CURSOR PERSONALIZADO */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+            box-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+        }
+
+        .custom-cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.2s ease-out;
+            mix-blend-mode: difference;
         }
 
         body {
@@ -39,10 +64,10 @@
             min-height: 100vh;
             scroll-behavior: smooth;
             font-size: var(--font-size);
-            cursor: var(--cursor-size);
+            cursor: none;
         }
 
-        /* ANIMACIÓN DE CARGA */
+        /* ANIMACIÓN DE CARGA OPTIMIZADA */
         .page-loader {
             position: fixed;
             top: 0;
@@ -61,6 +86,7 @@
         .page-loader.hidden {
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
         }
 
         .loader-logo {
@@ -120,7 +146,7 @@
             100% { left: 100%; }
         }
 
-        /* FONDO CON PARTÍCULAS */
+        /* FONDO CON PARTÍCULAS OPTIMIZADO */
         #particles-js {
             position: fixed;
             width: 100%;
@@ -130,7 +156,7 @@
             z-index: -1;
         }
 
-        /* BOTÓN DE CONFIGURACIÓN */
+        /* BOTÓN DE CONFIGURACIÓN OPTIMIZADO */
         .settings-btn {
             position: fixed;
             bottom: 30px;
@@ -144,7 +170,7 @@
             justify-content: center;
             font-size: 2rem;
             color: var(--darkest);
-            cursor: pointer;
+            cursor: none;
             box-shadow: 0 10px 40px rgba(0, 255, 255, 0.8);
             transition: all 0.4s ease;
             z-index: 9999;
@@ -177,7 +203,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* MODAL DE CONFIGURACIÓN */
+        /* MODAL DE CONFIGURACIÓN OPTIMIZADO */
         .settings-modal {
             position: fixed;
             top: 0;
@@ -240,7 +266,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
+            cursor: none;
             transition: all 0.3s ease;
             color: var(--warning);
             font-size: 1.5rem;
@@ -279,7 +305,7 @@
             border-radius: 10px;
             color: white;
             font-weight: 600;
-            cursor: pointer;
+            cursor: none;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
@@ -358,14 +384,14 @@
             color: #aaccff;
         }
 
-        /* TOGGLE SWITCH */
+        /* TOGGLE SWITCH OPTIMIZADO */
         .toggle-switch {
             position: relative;
             width: 60px;
             height: 30px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 30px;
-            cursor: pointer;
+            cursor: none;
             transition: all 0.3s ease;
             border: 2px solid rgba(255, 255, 255, 0.2);
         }
@@ -392,7 +418,7 @@
             left: 33px;
         }
 
-        /* SLIDER */
+        /* SLIDER OPTIMIZADO */
         .slider-container {
             width: 200px;
             position: relative;
@@ -404,7 +430,7 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             position: relative;
-            cursor: pointer;
+            cursor: none;
         }
 
         .slider-track {
@@ -425,12 +451,7 @@
             background: white;
             border-radius: 50%;
             box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-            cursor: grab;
-        }
-
-        .slider-thumb:active {
-            cursor: grabbing;
-            transform: translate(-50%, -50%) scale(1.2);
+            cursor: none;
         }
 
         .slider-value {
@@ -446,13 +467,13 @@
             font-weight: 700;
         }
 
-        /* COLOR PICKER */
+        /* COLOR PICKER OPTIMIZADO */
         .color-picker {
             width: 200px;
             height: 40px;
             border-radius: 10px;
             border: 2px solid rgba(0, 255, 255, 0.3);
-            cursor: pointer;
+            cursor: none;
             transition: all 0.3s ease;
             overflow: hidden;
             position: relative;
@@ -467,10 +488,10 @@
             width: 100%;
             height: 100%;
             border: none;
-            cursor: pointer;
+            cursor: none;
         }
 
-        /* SELECT PERSONALIZADO */
+        /* SELECT PERSONALIZADO OPTIMIZADO */
         .custom-select {
             width: 200px;
             position: relative;
@@ -481,7 +502,7 @@
             border: 2px solid rgba(0, 255, 255, 0.3);
             border-radius: 10px;
             padding: 10px 15px;
-            cursor: pointer;
+            cursor: none;
             transition: all 0.3s ease;
             display: flex;
             justify-content: space-between;
@@ -508,7 +529,7 @@
 
         .select-items div {
             padding: 10px 15px;
-            cursor: pointer;
+            cursor: none;
             transition: all 0.2s ease;
         }
 
@@ -516,7 +537,7 @@
             background: rgba(0, 255, 255, 0.2);
         }
 
-        /* BOTÓN RESET */
+        /* BOTÓN RESET OPTIMIZADO */
         .reset-btn {
             width: 100%;
             padding: 15px;
@@ -526,7 +547,7 @@
             border-radius: 15px;
             font-weight: 700;
             font-size: 1.1rem;
-            cursor: pointer;
+            cursor: none;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -555,7 +576,7 @@
             box-shadow: 0 10px 30px rgba(255, 68, 68, 0.4);
         }
 
-        /* BOTÓN RESET COLORS */
+        /* BOTÓN RESET COLORS OPTIMIZADO */
         .reset-colors-btn {
             padding: 10px 20px;
             background: linear-gradient(45deg, var(--accent), var(--primary));
@@ -563,7 +584,7 @@
             border: none;
             border-radius: 10px;
             font-weight: 700;
-            cursor: pointer;
+            cursor: none;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -580,7 +601,7 @@
             50% { background-position: 100% 50%; }
         }
 
-        /* BARRA DE NAVEGACIÓN ÉPICA */
+        /* BARRA DE NAVEGACIÓN ÉPICA OPTIMIZADA */
         .navbar {
             background: rgba(10, 15, 35, 0.98);
             backdrop-filter: blur(25px);
@@ -665,6 +686,7 @@
             letter-spacing: 1.5px;
             display: inline-block;
             border: 2px solid transparent;
+            cursor: none;
         }
 
         .nav-link::before {
@@ -763,7 +785,7 @@
             }
         }
 
-        /* CONTENIDO PRINCIPAL */
+        /* CONTENIDO PRINCIPAL OPTIMIZADO */
         .main-content {
             margin-top: 120px;
             padding: 40px 20px;
@@ -818,7 +840,7 @@
             line-height: 1.6;
         }
 
-        /* BOTONES ÉPICOS */
+        /* BOTONES ÉPICOS OPTIMIZADOS */
         .cta-buttons {
             display: flex;
             justify-content: center;
@@ -843,6 +865,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            cursor: none;
         }
 
         .btn-discord {
@@ -881,7 +904,7 @@
             filter: brightness(1.2);
         }
 
-        /* GRID DE FACCIONES */
+        /* GRID DE FACCIONES OPTIMIZADO */
         .factions-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -899,7 +922,7 @@
             transition: all 0.5s ease;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
+            cursor: none;
             opacity: 0;
             transform: translateY(30px);
         }
@@ -942,7 +965,7 @@
             margin-bottom: 25px;
         }
 
-        /* BOTÓN POSTULAR PARA FACCIONES */
+        /* BOTÓN POSTULAR PARA FACCIONES OPTIMIZADO */
         .postular-btn {
             display: block;
             width: 100%;
@@ -954,7 +977,7 @@
             border-radius: 10px;
             font-weight: 700;
             font-size: 1.1rem;
-            cursor: pointer;
+            cursor: none;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -979,7 +1002,7 @@
         .bomberos { border-color: #ff3300; }
         .bomberos .faction-icon { color: #ff3300; }
 
-        /* SECCIÓN NORMAS */
+        /* SECCIÓN NORMAS OPTIMIZADA */
         .normas-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1017,7 +1040,7 @@
             gap: 10px;
         }
 
-        /* BENEFICIOS VIP */
+        /* BENEFICIOS VIP OPTIMIZADO */
         .vip-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1073,6 +1096,7 @@
             border-radius: 8px;
             font-weight: 700;
             transition: all 0.3s ease;
+            cursor: none;
         }
 
         .comprar-btn:hover {
@@ -1080,7 +1104,7 @@
             box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
         }
 
-        /* BENEFICIOS BOOSTER */
+        /* BENEFICIOS BOOSTER OPTIMIZADO */
         .booster-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1115,7 +1139,7 @@
             margin-bottom: 15px;
         }
 
-        /* STAFF */
+        /* STAFF OPTIMIZADO */
         .staff-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1152,7 +1176,7 @@
             margin-top: 10px;
         }
 
-        /* LOADING BAR */
+        /* LOADING BAR OPTIMIZADO */
         .loading-bar {
             position: fixed;
             top: 0;
@@ -1164,7 +1188,7 @@
             transition: width 0.3s ease;
         }
 
-        /* MENSAJES DE CARGA */
+        /* MENSAJES DE CARGA OPTIMIZADOS */
         .loading-message {
             position: fixed;
             bottom: 20px;
@@ -1188,7 +1212,7 @@
             opacity: 1;
         }
 
-        /* MODAL DE CONFIRMACIÓN */
+        /* MODAL DE CONFIRMACIÓN OPTIMIZADO */
         .confirmation-modal {
             position: fixed;
             top: 0;
@@ -1247,7 +1271,7 @@
             border: none;
             border-radius: 10px;
             font-weight: 700;
-            cursor: pointer;
+            cursor: none;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -1275,7 +1299,7 @@
             box-shadow: 0 10px 20px rgba(255, 68, 68, 0.4);
         }
 
-        /* NOTIFICACIONES */
+        /* NOTIFICACIONES OPTIMIZADAS */
         .notification {
             position: fixed;
             top: 20px;
@@ -1342,12 +1366,7 @@
             text-shadow: 0 0 2px black;
         }
 
-        /* ESTILOS PARA CURSOR GRANDE */
-        body.large-cursor {
-            --cursor-size: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="white" stroke="%2300ffff" stroke-width="2"/></svg>'), auto;
-        }
-
-        /* RESPONSIVE */
+        /* RESPONSIVE OPTIMIZADO */
         @media (max-width: 768px) {
             .nav-container {
                 flex-direction: column;
@@ -1386,10 +1405,40 @@
             .confirmation-buttons {
                 flex-direction: column;
             }
+
+            /* Desactivar cursor personalizado en móviles */
+            .custom-cursor,
+            .custom-cursor-follower {
+                display: none;
+            }
+            
+            body {
+                cursor: auto;
+            }
+        }
+
+        /* Optimizaciones de rendimiento */
+        .will-change {
+            will-change: transform, opacity;
+        }
+
+        /* Contenedor para optimización de partículas */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
+    <!-- CURSOR PERSONALIZADO -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
     <!-- ANIMACIÓN DE CARGA -->
     <div class="page-loader" id="pageLoader">
         <img src="https://cdn-icons-png.flaticon.com/512/2331/2331961.png" alt="Loading" class="loader-logo">
@@ -1629,7 +1678,9 @@
     <div class="loading-bar" id="loadingBar"></div>
 
     <!-- FONDO CON PARTÍCULAS -->
-    <div id="particles-js"></div>
+    <div class="particles-container">
+        <div id="particles-js"></div>
+    </div>
 
     <!-- BARRA DE NAVEGACIÓN -->
     <nav class="navbar" id="navbar">
@@ -1897,23 +1948,77 @@
     </main>
 
     <script>
-        // ANIMACIÓN DE CARGA
+        // ANIMACIÓN DE CARGA OPTIMIZADA
         window.addEventListener('load', function() {
             setTimeout(() => {
                 document.getElementById('pageLoader').classList.add('hidden');
+                initCustomCursor();
             }, 1500);
         });
 
-        // INICIALIZAR PARTÍCULAS
+        // CURSOR PERSONALIZADO
+        function initCustomCursor() {
+            const cursor = document.querySelector('.custom-cursor');
+            const follower = document.querySelector('.custom-cursor-follower');
+            
+            let mouseX = 0, mouseY = 0;
+            let cursorX = 0, cursorY = 0;
+            let followerX = 0, followerY = 0;
+            
+            // Actualizar posición del cursor
+            function updateCursor() {
+                cursorX += (mouseX - cursorX) / 8;
+                cursorY += (mouseY - cursorY) / 8;
+                
+                followerX += (mouseX - followerX) / 15;
+                followerY += (mouseY - followerY) / 15;
+                
+                cursor.style.left = cursorX + 'px';
+                cursor.style.top = cursorY + 'px';
+                
+                follower.style.left = followerX + 'px';
+                follower.style.top = followerY + 'px';
+                
+                requestAnimationFrame(updateCursor);
+            }
+            
+            // Seguir movimiento del mouse
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+            
+            // Efectos de hover
+            const interactiveElements = document.querySelectorAll('a, button, .settings-tab, .toggle-switch, .select-selected, .slider, input[type="color"]');
+            
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(1.5)';
+                    follower.style.transform = 'scale(1.2)';
+                    follower.style.borderColor = 'var(--accent)';
+                });
+                
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                    follower.style.transform = 'scale(1)';
+                    follower.style.borderColor = 'var(--accent)';
+                });
+            });
+            
+            // Iniciar animación del cursor
+            updateCursor();
+        }
+
+        // INICIALIZAR PARTÍCULAS OPTIMIZADO
         function initParticles() {
             if (typeof particlesJS !== 'undefined') {
-                const particleCount = window.innerWidth < 768 ? 30 : 60;
+                const particleCount = window.innerWidth < 768 ? 20 : 40; // Reducido para mejor rendimiento
                 
                 particlesJS('particles-js', {
                     particles: {
                         number: { 
                             value: particleCount, 
-                            density: { enable: true, value_area: 1000 } 
+                            density: { enable: true, value_area: 800 } 
                         },
                         color: { value: "#6366f1" },
                         shape: { 
@@ -1921,25 +2026,25 @@
                             stroke: { width: 0, color: "#000000" }
                         },
                         opacity: { 
-                            value: 0.4, 
+                            value: 0.3, 
                             random: true,
                             anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
                         },
                         size: { 
-                            value: 3, 
+                            value: 2, 
                             random: true,
                             anim: { enable: true, speed: 2, size_min: 0.5, sync: false }
                         },
                         line_linked: {
                             enable: true,
-                            distance: 180,
+                            distance: 150,
                             color: "#ec4899",
-                            opacity: 0.3,
+                            opacity: 0.2,
                             width: 1
                         },
                         move: {
                             enable: true,
-                            speed: 1.5,
+                            speed: 1,
                             direction: "none",
                             random: true,
                             straight: false,
@@ -1956,8 +2061,8 @@
                             resize: true
                         },
                         modes: {
-                            repulse: { distance: 120, duration: 0.4 },
-                            push: { particles_nb: 3 }
+                            repulse: { distance: 100, duration: 0.4 },
+                            push: { particles_nb: 2 }
                         }
                     },
                     retina_detect: true
@@ -2055,7 +2160,6 @@
                 
                 if (settings.largeCursor) {
                     document.getElementById('largeCursorToggle').classList.add('active');
-                    document.body.classList.add('large-cursor');
                 }
                 
                 if (settings.particlesEffect !== undefined && !settings.particlesEffect) {
@@ -2208,7 +2312,7 @@
                 }
                 
                 if (setting === 'large-cursor') {
-                    document.body.classList.toggle('large-cursor', toggle.classList.contains('active'));
+                    // Implementar lógica para cursor grande
                 }
                 
                 if (setting === 'particles-effect') {
@@ -2258,7 +2362,7 @@
                         particlesJS('particles-js', {
                             particles: {
                                 number: { 
-                                    value: Math.floor((percentage / 100) * 100)
+                                    value: Math.floor((percentage / 100) * 40)
                                 }
                             }
                         });
