@@ -12,15 +12,72 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            cursor: none;
         }
 
         :root {
             --primary: #00ffff;
             --secondary: #ff00ff;
             --accent: #00ff88;
+            --warning: #ff4444;
             --dark: #0f3460;
             --darker: #16213e;
             --darkest: #1a1a2e;
+        }
+
+        /* CURSOR PERSONALIZADO */
+        .cursor {
+            width: 25px;
+            height: 25px;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .cursor-ring {
+            width: 25px;
+            height: 25px;
+            border: 2px solid var(--secondary);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: cursorPulse 2s infinite;
+        }
+
+        @keyframes cursorPulse {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.7;
+            }
+        }
+
+        .cursor-hover {
+            transform: scale(1.5);
+        }
+
+        .cursor-hover .cursor-ring {
+            border-color: var(--accent);
+            background: rgba(0, 255, 136, 0.1);
         }
 
         body {
@@ -32,19 +89,20 @@
             scroll-behavior: smooth;
         }
 
-        /* FONDO ANIMADO MEGA ÉPICO */
+        /* FONDO ANIMADO MEGA ÉPICO CON MÁS PARTÍCULAS */
         .background-animation {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2;
+            z-index: -3;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.25) 0%, transparent 50%);
-            animation: backgroundShift 15s ease-in-out infinite alternate;
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.6) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.5) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 60% 60%, rgba(0, 255, 136, 0.3) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite alternate;
         }
 
         .particles {
@@ -53,33 +111,41 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: -2;
             pointer-events: none;
         }
 
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary);
             border-radius: 50%;
-            animation: floatParticle 20s infinite linear;
-            opacity: 0.6;
+            animation: floatParticle 25s infinite linear;
+            opacity: 0;
+        }
+
+        .particle:nth-child(odd) {
+            background: var(--primary);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .particle:nth-child(even) {
+            background: var(--secondary);
+            box-shadow: 0 0 15px var(--secondary);
         }
 
         @keyframes floatParticle {
             0% {
-                transform: translateY(100vh) translateX(0) rotate(0deg);
+                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0);
                 opacity: 0;
             }
             10% {
-                opacity: 0.6;
+                opacity: 0.8;
+                transform: scale(1);
             }
             90% {
-                opacity: 0.6;
+                opacity: 0.8;
             }
             100% {
-                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                transform: translateY(-100px) translateX(100px) rotate(360deg) scale(0);
                 opacity: 0;
             }
         }
@@ -87,24 +153,28 @@
         @keyframes backgroundShift {
             0% { 
                 transform: scale(1) rotate(0deg);
-                filter: hue-rotate(0deg);
+                filter: hue-rotate(0deg) blur(0px);
             }
-            50% {
-                transform: scale(1.1) rotate(0.5deg);
-                filter: hue-rotate(45deg);
+            33% {
+                transform: scale(1.1) rotate(0.3deg);
+                filter: hue-rotate(60deg) blur(1px);
+            }
+            66% {
+                transform: scale(1.05) rotate(-0.2deg);
+                filter: hue-rotate(120deg) blur(0.5px);
             }
             100% { 
-                transform: scale(1.05) rotate(-0.5deg);
-                filter: hue-rotate(90deg);
+                transform: scale(1.08) rotate(0.1deg);
+                filter: hue-rotate(180deg) blur(0px);
             }
         }
 
         /* BARRA DE NAVEGACIÓN MEGA ÉPICA */
         .navbar {
-            background: rgba(10, 15, 35, 0.95);
-            backdrop-filter: blur(20px);
+            background: rgba(10, 15, 35, 0.98);
+            backdrop-filter: blur(25px);
             border-bottom: 3px solid var(--primary);
-            box-shadow: 0 8px 40px rgba(0, 255, 255, 0.4);
+            box-shadow: 0 8px 50px rgba(0, 255, 255, 0.5);
             position: fixed;
             width: 100%;
             top: 0;
@@ -113,9 +183,9 @@
         }
 
         .navbar.scrolled {
-            background: rgba(5, 10, 25, 0.98);
-            padding: 5px 0;
-            box-shadow: 0 10px 50px rgba(0, 255, 255, 0.6);
+            background: rgba(5, 10, 25, 0.99);
+            padding: 8px 0;
+            box-shadow: 0 15px 60px rgba(0, 255, 255, 0.7);
         }
 
         .nav-container {
@@ -136,12 +206,12 @@
 
         @keyframes logoGlow {
             0% { 
-                filter: drop-shadow(0 0 10px var(--primary)) 
-                       drop-shadow(0 0 20px var(--primary));
+                filter: drop-shadow(0 0 15px var(--primary)) 
+                       drop-shadow(0 0 30px var(--primary));
             }
             100% { 
-                filter: drop-shadow(0 0 20px var(--secondary)) 
-                       drop-shadow(0 0 40px var(--primary));
+                filter: drop-shadow(0 0 25px var(--secondary)) 
+                       drop-shadow(0 0 50px var(--primary));
             }
         }
 
@@ -150,43 +220,48 @@
             height: 60px;
             border-radius: 50%;
             border: 3px solid var(--primary);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
-            animation: rotate3D 15s linear infinite;
-            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+            animation: rotate3D 20s linear infinite;
+            transition: all 0.4s ease;
         }
 
         .logo-img:hover {
-            transform: scale(1.1) rotate(180deg);
-            box-shadow: 0 0 40px rgba(255, 0, 255, 0.8);
+            transform: scale(1.2) rotate(180deg);
+            box-shadow: 0 0 50px rgba(255, 0, 255, 0.9);
         }
 
         @keyframes rotate3D {
-            0% { transform: rotateY(0deg) rotate(0deg); }
-            100% { transform: rotateY(360deg) rotate(360deg); }
+            0% { transform: rotateY(0deg) rotateX(0deg) rotate(0deg); }
+            25% { transform: rotateY(90deg) rotateX(45deg) rotate(90deg); }
+            50% { transform: rotateY(180deg) rotateX(0deg) rotate(180deg); }
+            75% { transform: rotateY(270deg) rotateX(-45deg) rotate(270deg); }
+            100% { transform: rotateY(360deg) rotateX(0deg) rotate(360deg); }
         }
 
         .logo-text {
             font-family: 'Orbitron', sans-serif;
             font-size: 2rem;
             font-weight: 900;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--warning), var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-size: 300% 300%;
-            animation: gradientFlow 4s ease infinite;
+            background-size: 400% 400%;
+            animation: gradientFlow 5s ease infinite;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         @keyframes gradientFlow {
             0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 50% 100%; }
             50% { background-position: 100% 50%; }
+            75% { background-position: 50% 0%; }
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 35px;
+            gap: 25px;
         }
 
         .nav-item {
@@ -197,9 +272,9 @@
             color: white;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.2rem;
-            padding: 12px 20px;
-            border-radius: 10px;
+            font-size: 1.1rem;
+            padding: 12px 18px;
+            border-radius: 12px;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             overflow: hidden;
@@ -214,7 +289,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.5), transparent);
             transition: left 0.6s ease;
         }
 
@@ -229,39 +304,40 @@
             left: 50%;
             width: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
             transition: all 0.4s ease;
             transform: translateX(-50%);
+            border-radius: 2px;
         }
 
         .nav-link:hover::after {
-            width: 80%;
+            width: 90%;
         }
 
         .nav-link:hover {
             color: var(--primary);
-            background: rgba(0, 255, 255, 0.15);
+            background: rgba(0, 255, 255, 0.2);
             transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.4);
         }
 
-        /* CONTENIDO PRINCIPAL MEGA ÉPICO */
+        /* CONTENIDO PRINCIPAL */
         .main-content {
             margin-top: 120px;
-            padding: 60px 30px;
+            padding: 40px 20px;
         }
 
         .hero-section {
             background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(25px);
+            backdrop-filter: blur(30px);
             border-radius: 30px;
-            padding: 80px 50px;
-            margin: 0 auto;
+            padding: 70px 40px;
+            margin: 0 auto 60px auto;
             max-width: 1200px;
-            border: 2px solid rgba(0, 255, 255, 0.4);
-            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            animation: heroFloat 8s ease-in-out infinite;
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            box-shadow: 0 25px 70px rgba(0, 255, 255, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            animation: heroFloat 10s ease-in-out infinite;
             position: relative;
             overflow: hidden;
         }
@@ -273,8 +349,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-            animation: shine 6s ease-in-out infinite;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.15), transparent);
+            animation: shine 8s ease-in-out infinite;
             transform: rotate(45deg);
         }
 
@@ -286,54 +362,60 @@
         @keyframes heroFloat {
             0%, 100% { 
                 transform: translateY(0px) rotate(0deg);
-                box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
+                box-shadow: 0 25px 70px rgba(0, 255, 255, 0.4);
             }
-            50% { 
-                transform: translateY(-20px) rotate(0.5deg);
-                box-shadow: 0 40px 80px rgba(0, 255, 255, 0.5);
+            33% { 
+                transform: translateY(-15px) rotate(0.3deg);
+                box-shadow: 0 35px 90px rgba(255, 0, 255, 0.5);
+            }
+            66% { 
+                transform: translateY(-10px) rotate(-0.2deg);
+                box-shadow: 0 30px 80px rgba(0, 255, 136, 0.4);
             }
         }
 
         .hero-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 4.5rem;
+            font-size: 4rem;
             margin-bottom: 25px;
             background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-size: 300% 300%;
-            animation: gradientFlow 3s ease infinite, titlePulse 2s ease-in-out infinite;
+            background-size: 400% 400%;
+            animation: gradientFlow 4s ease infinite, titlePulse 3s ease-in-out infinite;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            letter-spacing: 4px;
+            text-shadow: 0 0 40px rgba(0, 255, 255, 0.7);
         }
 
         @keyframes titlePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.02) rotate(0.1deg); }
+            50% { transform: scale(1.01) rotate(-0.1deg); }
+            75% { transform: scale(1.03) rotate(0.05deg); }
         }
 
         .hero-subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 35px;
+            font-size: 1.6rem;
+            margin-bottom: 30px;
             color: #ccccff;
             font-weight: 600;
-            text-shadow: 0 0 20px rgba(204, 204, 255, 0.5);
-            animation: fadeInUp 1s ease-out;
+            text-shadow: 0 0 25px rgba(204, 204, 255, 0.6);
+            animation: fadeInUp 1s ease-out 0.3s both;
         }
 
         .hero-description {
-            font-size: 1.3rem;
-            margin-bottom: 45px;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
             color: #aaccff;
             line-height: 1.6;
-            animation: fadeInUp 1.2s ease-out;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -341,11 +423,11 @@
             }
         }
 
-        /* BOTÓN PRINCIPAL MEGA ÉPICO */
+        /* BOTÓN PRINCIPAL */
         .main-cta {
             text-align: center;
-            margin-bottom: 50px;
-            animation: fadeInUp 1.4s ease-out;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.9s both;
         }
 
         .main-btn {
@@ -360,21 +442,21 @@
             position: relative;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5);
             text-transform: uppercase;
             letter-spacing: 2px;
             border: 2px solid transparent;
-            animation: btnPulse 2s ease-in-out infinite;
+            animation: btnPulse 2.5s ease-in-out infinite;
         }
 
         @keyframes btnPulse {
             0%, 100% { 
                 transform: scale(1);
-                box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+                box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5);
             }
             50% { 
-                transform: scale(1.05);
-                box-shadow: 0 15px 40px rgba(0, 255, 255, 0.6);
+                transform: scale(1.08);
+                box-shadow: 0 20px 50px rgba(0, 255, 255, 0.8);
             }
         }
 
@@ -385,7 +467,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
             transition: left 0.8s ease;
         }
 
@@ -394,33 +476,33 @@
         }
 
         .main-btn:hover {
-            transform: translateY(-8px) scale(1.1);
-            box-shadow: 0 20px 50px rgba(0, 255, 255, 0.8);
+            transform: translateY(-8px) scale(1.12);
+            box-shadow: 0 25px 60px rgba(0, 255, 255, 1);
             background: linear-gradient(45deg, var(--secondary), var(--primary));
         }
 
-        /* BOTONES SECUNDARIOS ÉPICOS */
+        /* BOTONES SECUNDARIOS */
         .cta-buttons {
             display: flex;
             justify-content: center;
             gap: 25px;
-            margin-top: 40px;
+            margin-top: 30px;
             flex-wrap: wrap;
-            animation: fadeInUp 1.6s ease-out;
+            animation: fadeInUp 1s ease-out 1.2s both;
         }
 
         .btn {
-            padding: 18px 35px;
-            font-size: 1.2rem;
+            padding: 16px 32px;
+            font-size: 1.1rem;
             font-weight: 600;
             border: none;
             border-radius: 12px;
-            cursor: pointer;
+            cursor: none;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             position: relative;
             overflow: hidden;
             text-transform: uppercase;
@@ -430,19 +512,19 @@
         .btn-discord {
             background: linear-gradient(45deg, #5865F2, #7289DA);
             color: white;
-            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.5);
         }
 
         .btn-robux {
             background: linear-gradient(45deg, #ff4444, #ff8800);
             color: white;
-            box-shadow: 0 8px 25px rgba(255, 68, 68, 0.4);
+            box-shadow: 0 10px 30px rgba(255, 68, 68, 0.5);
         }
 
         .btn-normas {
             background: linear-gradient(45deg, var(--accent), #00ccff);
             color: white;
-            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.5);
         }
 
         .btn::before {
@@ -452,7 +534,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
             transition: left 0.6s ease;
         }
 
@@ -461,24 +543,42 @@
         }
 
         .btn:hover {
-            transform: translateY(-6px) scale(1.08);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            filter: brightness(1.2);
+            transform: translateY(-6px) scale(1.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            filter: brightness(1.3);
         }
 
-        /* SECCIONES QUE APARECEN AL SCROLL */
+        /* SECCIONES ÉPICAS */
         .section {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(25px);
             border-radius: 25px;
-            padding: 60px 40px;
-            margin: 50px auto;
+            padding: 50px 35px;
+            margin: 40px auto;
             max-width: 1100px;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 255, 255, 0.25);
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(60px);
             transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 1s ease;
+        }
+
+        .section.visible::before {
+            transform: scaleX(1);
         }
 
         .section.visible {
@@ -488,25 +588,78 @@
 
         .section h2 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             color: var(--primary);
             margin-bottom: 30px;
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
         }
 
-        /* LOADING BAR */
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .section-card:hover::before {
+            left: 100%;
+        }
+
+        .section-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.3);
+            border-color: var(--primary);
+        }
+
+        .section-card h3 {
+            color: var(--accent);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-card p {
+            color: #ccccff;
+            line-height: 1.5;
+        }
+
+        /* LOADING BAR MEJORADA */
         .loading-bar {
             position: fixed;
             top: 0;
             left: 0;
             width: 0%;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--warning));
             z-index: 1001;
-            transition: width 0.3s ease;
-            box-shadow: 0 0 10px var(--primary);
+            transition: width 0.2s ease;
+            box-shadow: 0 0 15px var(--primary);
         }
 
         /* RESPONSIVE */
@@ -536,10 +689,20 @@
                 max-width: 300px;
                 justify-content: center;
             }
+
+            .section-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- CURSOR PERSONALIZADO -->
+    <div class="cursor" id="cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
     <!-- LOADING BAR -->
     <div class="loading-bar" id="loadingBar"></div>
 
@@ -557,7 +720,7 @@
             
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#inicio" class="nav-link"><i class="fas fa-home"></i> INICIO</a></li>
-                <li class="nav-item"><a href="normas/" class="nav-link"><i class="fas fa-book"></i> NORMATIVAS</a></li>
+                <li class="nav-item"><a href="#normas-discord" class="nav-link"><i class="fas fa-book"></i> NORMATIVAS</a></li>
                 <li class="nav-item"><a href="#pases" class="nav-link"><i class="fas fa-star"></i> PASES</a></li>
                 <li class="nav-item"><a href="#robux" class="nav-link"><i class="fas fa-gem"></i> RUBUX</a></li>
                 <li class="nav-item"><a href="#discord" class="nav-link"><i class="fab fa-discord"></i> DISCORIO</a></li>
@@ -587,7 +750,7 @@
                 <a href="#" class="btn btn-robux">
                     <i class="fas fa-gem"></i> COMPRAR PASES
                 </a>
-                <a href="normas/" class="btn btn-normas">
+                <a href="#normas-discord" class="btn btn-normas">
                     <i class="fas fa-scroll"></i> VER NORMATIVAS
                 </a>
             </div>
@@ -596,20 +759,146 @@
         <!-- SECCIÓN NORMAS DISCORD -->
         <section class="section" id="normas-discord">
             <h2><i class="fas fa-gavel"></i> NORMAS DEL DISCORD</h2>
-            <div style="text-align: center; font-size: 1.2rem; color: #ccccff;">
-                <p>Las normas de nuestra comunidad Discord aparecerán aquí...</p>
-                <p style="margin-top: 20px; color: var(--accent);">¡Próximamente!</p>
+            <div class="section-grid">
+                <div class="section-card">
+                    <h3><i class="fas fa-comments"></i> Normas Generales</h3>
+                    <p>Respeto, no spam, contenido apropiado y buen comportamiento en todos los canales.</p>
+                </div>
+                <div class="section-card">
+                    <h3><i class="fas fa-microphone"></i> Chat de Voz</h3>
+                    <p>No gritar, evitar eco, respetar turnos y mantener calidad de audio.</p>
+                </div>
+                <div class="section-card">
+                    <h3><i class="fas fa-shield-alt"></i> Seguridad</h3>
+                    <p>Prohibido compartir enlaces maliciosos o información personal.</p>
+                </div>
             </div>
         </section>
 
-        <!-- MÁS SECCIONES IRÁN AQUÍ -->
+        <!-- SECCIÓN COMISERÍA VIRTUAL -->
+        <section class="section" id="comiseria">
+            <h2><i class="fas fa-police-car"></i> COMISERÍA VIRTUAL - CARABINEROS</h2>
+            <div class="section-grid">
+                <div class="section-card">
+                    <h3><i class="fas fa-clipboard-list"></i> Procedimientos</h3>
+                    <p>Protocolos de arresto, patrullaje y atención al ciudadano según manual.</p>
+                </div>
+                <div class="section-card">
+                    <h3><i class="fas fa-balance-scale"></i> Leyes y Reglamentos</h3>
+                    <p>Código penal, tránsito y regulaciones específicas del servidor.</p>
+                </div>
+                <div class="section-card">
+                    <h3><i class="fas fa-user-shield"></i> Rangos Policiales</h3>
+                    <p>Estructura jerárquica, ascensos y responsabilidades de cada rango.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CONCEPTO ROLEPLAY -->
+        <section class="section" id="concepto-roleplay">
+            <h2><i class="fas fa-theater-masks"></i> CONCEPTO ROLEPLAY</h2>
+            <div class="section-grid">
+                <div class="section-card">
+                    <h3><i class="fas fa-heartbeat"></i> Nueva Vida</h3>
+                    <p>Reglas de nueva vida y pérdida de memoria tras eventos traumáticos.</p>
+                </div>
+                <div class="section-card">
+                    <h3><i class="fas fa-fist-raised"></i> Combate Realista</h3>
+                    <p>Sistema de daños, heridas y recuperación médica realista.</p>
+                </div>
+                <div class="section-card">
+                    <h3><i class="fas fa-handshake"></i> Interacciones</h3>
+                    <p>Protocolos para robos, negociaciones y situaciones de tensión.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN VIPS Y BENEFICIOS -->
+        <section class="section" id="vips-beneficios">
+            <h2><i class="fas fa-crown"></i> VIPS Y BENEFICIOS</h2>
+            <div class="section-grid">
+                <div class="section-card">
+                    <h3><i class="fas fa-gem"></i> VIP Básico</h3>
+                    <p>Acceso a vehículos exclusivos y ropa especial. $5.000 CLP</p>
+                </div>
+                <div class="section-card">
+                    <h3><i class="fas fa-star"></i> VIP Premium</h3>
+                    <p>+ Prioridad en whitelist, casa exclusiva. $10.000 CLP</p>
+                </div>
+                <div class="section-card">
+                    <h3><i class="fas fa-rocket"></i> Booster</h3>
+                    <p>Beneficios por boost del servidor Discord.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN COMPRA DE PERSONAJES -->
+        <section class="section" id="compra-pj">
+            <h2><i class="fas fa-user-tie"></i> COMPRA DE PERSONAJES</h2>
+            <div class="section-grid">
+                <div class="section-card">
+                    <h3><i class="fas fa-id-card"></i> Personaje Básico</h3>
+                    <p>Personaje con historia básica y $50.000 in-game. $3.000 CLP</p>
+                </div>
+                <div class="section-card">
+                    <h3><i class="fas fa-id-card-alt"></i> Personaje Premium</h3>
+                    <p>+ Casa y vehículo incluido. $7.000 CLP</p>
+                </div>
+                <div class="section-card">
+                    <h3><i class="fas fa-user-ninja"></i> Personaje Élite</h3>
+                    <p>Historia personalizada y beneficios exclusivos. $15.000 CLP</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN FACCIONES LEGALES -->
+        <section class="section" id="facciones-legales">
+            <h2><i class="fas fa-balance-scale"></i> FACCIONES LEGALES</h2>
+            <div class="section-grid">
+                <div class="section-card">
+                    <h3><i class="fas fa-police-car"></i> Carabineros</h3>
+                    <p>Fuerza policial - Requiere prueba de ingreso y entrenamiento.</p>
+                </div>
+                <div class="section-card">
+                    <h3><i class="fas fa-ambulance"></i> Servicio Médico</h3>
+                    <p>Paramédicos y hospital - Conocimientos médicos básicos.</p>
+                </div>
+                <div class="section-card">
+                    <h3><i class="fas fa-gavel"></i> Sistema Judicial</h3>
+                    <p>Jueces, abogados y sistema de cortes realista.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÁS SECCIONES... -->
     </main>
 
     <script>
-        // CREAR PARTÍCULAS MEGA ÉPICAS
+        // CURSOR PERSONALIZADO
+        const cursor = document.getElementById('cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Efecto hover en enlaces y botones
+        const interactiveElements = document.querySelectorAll('a, button, .nav-link, .btn, .section-card');
+        
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.classList.add('cursor-hover');
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.classList.remove('cursor-hover');
+            });
+        });
+
+        // CREAR MÁS PARTÍCULAS ÉPICAS
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+            const particleCount = 80;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -617,84 +906,5 @@
                 
                 // Posición aleatoria
                 particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 15) + 's';
-                
-                // Tamaño aleatorio
-                const size = 2 + Math.random() * 4;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                
-                // Color aleatorio
-                const colors = ['#00ffff', '#ff00ff', '#00ff88', '#0080ff'];
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // LOADING BAR AL SCROLL
-        function updateLoadingBar() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("loadingBar").style.width = scrolled + "%";
-        }
-
-        // NAVBAR SCROLL EFFECT
-        function handleNavbarScroll() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        }
-
-        // SCROLL ANIMATIONS
-        function handleScrollAnimations() {
-            const sections = document.querySelectorAll('.section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (sectionTop < windowHeight * 0.85) {
-                    section.classList.add('visible');
-                }
-            });
-        }
-
-        // INICIALIZAR TODO
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            
-            window.addEventListener('scroll', function() {
-                updateLoadingBar();
-                handleNavbarScroll();
-                handleScrollAnimations();
-            });
-
-            // Iniciar animaciones de secciones
-            handleScrollAnimations();
-        });
-
-        // EFECTO DE ESCRITURA PARA EL TÍTULO
-        const title = document.querySelector('.hero-title');
-        const originalText = title.textContent;
-        title.textContent = '';
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < originalText.length) {
-                title.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 80);
-            }
-        }
-        
-        // Iniciar efecto después de cargar la página
-        setTimeout(typeWriter, 500);
-    </script>
-</body>
-</html>
+                particle.style.animationDelay = Math.random() * 25 + 's';
+                particle.style.animationDuration = (20 + Math.random
