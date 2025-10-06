@@ -101,7 +101,7 @@
             }
         }
 
-        /* BARRA DE NAVEGACIÓN */
+        /* BARRA DE NAVEGACIÓN ÉPICA */
         .navbar {
             background: rgba(10, 15, 35, 0.98);
             backdrop-filter: blur(25px);
@@ -182,15 +182,18 @@
             text-decoration: none;
             font-weight: 700;
             font-size: 1.1rem;
-            padding: 12px 18px;
-            border-radius: 12px;
-            transition: all 0.4s ease;
+            padding: 14px 22px;
+            border-radius: 15px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             position: relative;
             overflow: hidden;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            border: 2px solid transparent;
         }
 
+        /* Efecto de brillo al pasar el cursor */
         .nav-link::before {
             content: '';
             position: absolute;
@@ -198,7 +201,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.6), transparent);
             transition: left 0.6s ease;
         }
 
@@ -206,18 +209,89 @@
             left: 100%;
         }
 
-        .nav-link:hover {
-            color: var(--primary);
-            background: rgba(0, 255, 255, 0.15);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.4);
+        /* Efecto de partículas en hover */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.4), transparent);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
         }
 
-        /* EFECTO ACTIVO PARA ENLACES DE NAVEGACIÓN */
-        .nav-link.active {
+        .nav-link:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .nav-link:hover {
             color: var(--primary);
             background: rgba(0, 255, 255, 0.2);
-            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 
+                0 15px 35px rgba(0, 255, 255, 0.6),
+                0 0 20px rgba(0, 255, 255, 0.4),
+                inset 0 0 15px rgba(0, 255, 255, 0.2);
+            border-color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+
+        /* ESTADO ACTIVO - MÁS ÉPICO */
+        .nav-link.active {
+            color: var(--darkest);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--primary) 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+            box-shadow: 
+                0 10px 30px rgba(0, 255, 255, 0.7),
+                0 0 30px rgba(0, 255, 255, 0.5),
+                inset 0 2px 10px rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px) scale(1.05);
+            border-color: var(--accent);
+            font-weight: 900;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Efecto al hacer clic */
+        .nav-link:active {
+            transform: translateY(0px) scale(0.96);
+            box-shadow: 
+                0 5px 15px rgba(0, 255, 255, 0.4),
+                inset 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Pulso continuo en el enlace activo */
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            animation: pulse 2s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.15);
+                opacity: 0;
+            }
         }
 
         /* CONTENIDO PRINCIPAL */
@@ -745,313 +819,9 @@
                 <!-- CARABINEROS -->
                 <div class="faction-card carabineros">
                     <div class="faction-icon">
-                        <i class="fas fa-police-car"></i>
+                        <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3 class="faction-title">CARABINEROS</h3>
                     <p class="faction-description">
                         Mantén el orden y la seguridad en las calles de Chile. Protege a los ciudadanos y haz cumplir la ley.
                     </p>
-                    <a href="https://discord.gg/TU_LINK_CARABINEROS" class="postular-btn" target="_blank">
-                        POSTULAR
-                    </a>
-                </div>
-
-                <!-- PDI -->
-                <div class="faction-card pdi">
-                    <div class="faction-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3 class="faction-title">PDI</h3>
-                    <p class="faction-description">
-                        Investiga crímenes y resuelve los casos más complejos. Desentraña misterios y busca la verdad.
-                    </p>
-                    <a href="https://discord.gg/TU_LINK_PDI" class="postular-btn" target="_blank">
-                        POSTULAR
-                    </a>
-                </div>
-
-                <!-- SAMU -->
-                <div class="faction-card samu">
-                    <div class="faction-icon">
-                        <i class="fas fa-ambulance"></i>
-                    </div>
-                    <h3 class="faction-title">SAMU</h3>
-                    <p class="faction-description">
-                        Servicio de Atención Médica de Urgencias. Proporciona cuidados médicos especializados.
-                    </p>
-                    <a href="https://discord.gg/TU_LINK_SAMU" class="postular-btn" target="_blank">
-                        POSTULAR
-                    </a>
-                </div>
-
-                <!-- BOMBEROS -->
-                <div class="faction-card bomberos">
-                    <div class="faction-icon">
-                        <i class="fas fa-fire-extinguisher"></i>
-                    </div>
-                    <h3 class="faction-title">BOMBEROS</h3>
-                    <p class="faction-description">
-                        Combate incendios y rescata ciudadanos en peligro. Sé un héroe en situaciones extremas.
-                    </p>
-                    <a href="https://discord.gg/TU_LINK_BOMBEROS" class="postular-btn" target="_blank">
-                        POSTULAR
-                    </a>
-                </div>
-
-                <!-- FISCALÍA -->
-                <div class="faction-card fiscalia">
-                    <div class="faction-icon">
-                        <i class="fas fa-gavel"></i>
-                    </div>
-                    <h3 class="faction-title">FISCALÍA</h3>
-                    <p class="faction-description">
-                        Administra la justicia y procesa casos legales. Representa al estado en procesos judiciales.
-                    </p>
-                    <a href="https://discord.gg/TU_LINK_FISCALIA" class="postular-btn" target="_blank">
-                        POSTULAR
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN BENEFICIOS VIP -->
-        <section class="section" id="beneficios-vip">
-            <h2 class="section-title">BENEFICIOS VIP</h2>
-            <p class="section-subtitle">Ventajas exclusivas para nuestros miembros VIP</p>
-            
-            <div class="beneficios-vip">
-                <div class="beneficios-grid">
-                    <div class="beneficio-item">
-                        <i class="fas fa-crown"></i>
-                        <h3>Tag VIP</h3>
-                        <p>Tag exclusivo en Discord y en el juego</p>
-                    </div>
-                    <div class="beneficio-item">
-                        <i class="fas fa-car"></i>
-                        <h3>Vehículos Exclusivos</h3>
-                        <p>Acceso a vehículos que otros jugadores no tienen</p>
-                    </div>
-                    <div class="beneficio-item">
-                        <i class="fas fa-home"></i>
-                        <h3>Casas Exclusivas</h3>
-                        <p>Propiedades únicas en las mejores ubicaciones</p>
-                    </div>
-                    <div class="beneficio-item">
-                        <i class="fas fa-user-shield"></i>
-                        <h3>Protección Especial</h3>
-                        <p>Menos probabilidad de ser robado o atacado</p>
-                    </div>
-                    <div class="beneficio-item">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <h3>Bonificación Económica</h3>
-                        <p>Gana más dinero en todas las actividades</p>
-                    </div>
-                    <div class="beneficio-item">
-                        <i class="fas fa-headset"></i>
-                        <h3>Soporte Prioritario</h3>
-                        <p>Atención inmediata del staff para tus consultas</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN PASES -->
-        <section class="section" id="pases">
-            <h2 class="section-title">PASES PREMIUM</h2>
-            <p class="section-subtitle">Mejora tu experiencia con nuestros pases exclusivos</p>
-            
-            <div class="pases-grid">
-                <div class="pase-card">
-                    <h3>PASE BÁSICO</h3>
-                    <div class="pase-precio">$5.000 CLP</div>
-                    <ul class="pase-beneficios">
-                        <li>✔️ Acceso a vehículos exclusivos</li>
-                        <li>✔️ Ropa especial</li>
-                        <li>✔️ Tag en Discord</li>
-                        <li>❌ Casa exclusiva</li>
-                    </ul>
-                    <a href="#" class="comprar-btn">COMPRAR</a>
-                </div>
-
-                <div class="pase-card">
-                    <h3>PASE PREMIUM</h3>
-                    <div class="pase-precio">$10.000 CLP</div>
-                    <ul class="pase-beneficios">
-                        <li>✔️ Todos los beneficios Básico</li>
-                        <li>✔️ Casa exclusiva</li>
-                        <li>✔️ Prioridad en whitelist</li>
-                        <li>✔️ Soporte prioritario</li>
-                    </ul>
-                    <a href="#" class="comprar-btn">COMPRAR</a>
-                </div>
-
-                <div class="pase-card">
-                    <h3>PASE ÉLITE</h3>
-                    <div class="pase-precio">$15.000 CLP</div>
-                    <ul class="pase-beneficios">
-                        <li>✔️ Todos los beneficios Premium</li>
-                        <li>✔️ Personaje personalizado</li>
-                        <li>✔️ Acceso a beta testing</li>
-                        <li>✔️ Beneficios únicos</li>
-                    </ul>
-                    <a href="#" class="comprar-btn">COMPRAR</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN RUBUX -->
-        <section class="section" id="robux">
-            <h2 class="section-title">RUBUX</h2>
-            <p class="section-subtitle">Sistema de economía y recompensas</p>
-            <p class="section-description">
-                Próximamente: Sistema de Rubux para compras internas, recompensas y economía del servidor.
-            </p>
-        </section>
-
-        <!-- SECCIÓN DISCORD -->
-        <section class="section" id="discord">
-            <h2 class="section-title">DISCORD</h2>
-            <p class="section-subtitle">Únete a nuestra comunidad</p>
-            <div class="cta-buttons">
-                <a href="https://discord.gg/TU_LINK_DISCORD" class="btn btn-discord" target="_blank">
-                    <i class="fab fa-discord"></i> UNIRSE AL SERVIDOR
-                </a>
-            </div>
-        </section>
-
-        <!-- SECCIÓN STAFF -->
-        <section class="section" id="staff">
-            <h2 class="section-title">STAFF</h2>
-            <p class="section-subtitle">Nuestro equipo de administración</p>
-            <p class="section-description">
-                Conoce a nuestro equipo de staff dedicado a mantener un ambiente divertido y justo para todos.
-            </p>
-        </section>
-
-    </main>
-
-    <script>
-        // CREAR PARTÍCULAS
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 60;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 15) + 's';
-                
-                const size = 2 + Math.random() * 4;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                
-                const colors = ['#00ffff', '#ff00ff', '#00ff88', '#0080ff'];
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // LOADING BAR AL SCROLL
-        function updateLoadingBar() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("loadingBar").style.width = scrolled + "%";
-        }
-
-        // NAVBAR SCROLL EFFECT
-        function handleNavbarScroll() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        }
-
-        // ANIMACIONES AL SCROLL
-        function handleScrollAnimations() {
-            const sections = document.querySelectorAll('.section');
-            const cards = document.querySelectorAll('.faction-card, .norma-card, .pase-card');
-            
-            // Animar secciones
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (sectionTop < windowHeight * 0.85) {
-                    section.classList.add('visible');
-                }
-            });
-            
-            // Animar tarjetas
-            cards.forEach(card => {
-                const cardTop = card.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (cardTop < windowHeight * 0.85) {
-                    card.classList.add('animated');
-                }
-            });
-        }
-
-        // CAMBIAR ENLACE ACTIVO EN NAVEGACIÓN
-        function updateActiveNavLink() {
-            const sections = document.querySelectorAll('.section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let currentSection = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSection}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // INICIALIZAR
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            
-            window.addEventListener('scroll', function() {
-                updateLoadingBar();
-                handleNavbarScroll();
-                handleScrollAnimations();
-                updateActiveNavLink();
-            });
-
-            // Efecto de escritura para el título principal
-            const title = document.querySelector('#inicio .section-title');
-            const originalText = title.textContent;
-            title.textContent = '';
-            let i = 0;
-            
-            function typeWriter() {
-                if (i < originalText.length) {
-                    title.textContent += originalText.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 100);
-                }
-            }
-            
-            setTimeout(typeWriter, 500);
-            
-            // Animar elementos iniciales
-            handleScrollAnimations();
-        });
-    </script>
-</body>
-</html>
