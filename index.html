@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chilenos RP ER:LC - Liberty County</title>
+    <title>Chilenos RP ER:LC - Facciones Legales</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/2331/2331961.png">
     <style>
         * {
             margin: 0;
@@ -31,83 +30,9 @@
             overflow-x: hidden;
             min-height: 100vh;
             scroll-behavior: smooth;
-            cursor: none;
         }
 
-        /* CURSOR PERSONALIZADO MEGA ÉPICO */
-        .custom-cursor {
-            width: 25px;
-            height: 25px;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: transform 0.15s ease;
-        }
-
-        .cursor-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--primary);
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary);
-            animation: cursorPulse 1.5s infinite alternate;
-        }
-
-        .cursor-ring {
-            width: 25px;
-            height: 25px;
-            border: 2px solid var(--secondary);
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: cursorRotate 3s linear infinite;
-        }
-
-        .cursor-trail {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        @keyframes cursorPulse {
-            0% { transform: translate(-50%, -50%) scale(1); }
-            100% { transform: translate(-50%, -50%) scale(1.3); }
-        }
-
-        @keyframes cursorRotate {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .cursor-hover {
-            transform: scale(1.8);
-        }
-
-        .cursor-hover .cursor-ring {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent);
-        }
-
-        .cursor-hover .cursor-dot {
-            background: var(--warning);
-            box-shadow: 0 0 20px var(--warning);
-        }
-
-        /* FONDO ANIMADO MEGA ÉPICO */
+        /* FONDO ANIMADO CON PARTÍCULAS */
         .background-animation {
             position: fixed;
             top: 0;
@@ -116,9 +41,9 @@
             height: 100%;
             z-index: -3;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.8) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.6) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.5) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.6) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.5) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.4) 0%, transparent 50%);
             animation: backgroundShift 15s ease-in-out infinite alternate;
         }
 
@@ -175,59 +100,18 @@
             }
         }
 
-        /* BARRA DE NAVEGACIÓN MEGA ÉPICA */
-        .navbar {
-            background: rgba(10, 15, 35, 0.98);
-            backdrop-filter: blur(25px);
-            border-bottom: 3px solid var(--primary);
-            box-shadow: 0 8px 50px rgba(0, 255, 255, 0.6);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.4s ease;
-        }
-
-        .navbar.scrolled {
-            background: rgba(5, 10, 25, 0.99);
-            padding: 8px 0;
-            box-shadow: 0 15px 60px rgba(0, 255, 255, 0.8);
-        }
-
-        .nav-container {
-            max-width: 1400px;
+        /* CONTENIDO PRINCIPAL */
+        .main-content {
+            padding: 40px 20px;
+            max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
         }
 
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 3px solid var(--primary);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
-            animation: logoRotate 20s linear infinite;
-            transition: all 0.4s ease;
-        }
-
-        @keyframes logoRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .logo-text {
+        .section-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: 900;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 50px;
             background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -242,141 +126,116 @@
             50% { background-position: 100% 50%; }
         }
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 25px;
+        /* GRID DE FACCIONES MEGA ÉPICO */
+        .factions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
 
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            color: white;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            padding: 12px 18px;
-            border-radius: 12px;
-            transition: all 0.4s ease;
+        .faction-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid transparent;
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            cursor: pointer;
         }
 
-        .nav-link::before {
+        .faction-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
             transition: left 0.6s ease;
         }
 
-        .nav-link:hover::before {
+        .faction-card:hover::before {
             left: 100%;
         }
 
-        .nav-link:hover {
-            color: var(--primary);
-            background: rgba(0, 255, 255, 0.15);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.4);
+        .faction-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(0, 255, 255, 0.4);
+            border-color: var(--primary);
         }
 
-        /* CONTENIDO PRINCIPAL */
-        .main-content {
-            margin-top: 120px;
-            padding: 40px 20px;
+        /* EFECTO ESPECIAL AL TOCAR - CAMBIO DE COLOR */
+        .faction-card:active {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.15), rgba(255, 0, 255, 0.1));
+            transform: scale(0.98);
+            transition: all 0.1s ease;
         }
 
-        .hero-section {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(30px);
-            border-radius: 30px;
-            padding: 70px 40px;
-            margin: 0 auto 60px auto;
-            max-width: 1200px;
-            border: 2px solid rgba(0, 255, 255, 0.5);
-            box-shadow: 0 25px 70px rgba(0, 255, 255, 0.4);
-            animation: heroFloat 8s ease-in-out infinite;
-        }
-
-        @keyframes heroFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .hero-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4rem;
-            margin-bottom: 25px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 300% 300%;
-            animation: gradientFlow 3s ease infinite;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: 0 0 40px rgba(0, 255, 255, 0.7);
-        }
-
-        .hero-subtitle {
-            font-size: 1.6rem;
-            margin-bottom: 30px;
-            color: #ccccff;
-            font-weight: 600;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            color: #aaccff;
-            line-height: 1.6;
-        }
-
-        /* BOTONES ÉPICOS */
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 18px 35px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 15px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            position: relative;
-            overflow: hidden;
+        .faction-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 20px;
             transition: all 0.4s ease;
+        }
+
+        .faction-card:hover .faction-icon {
+            transform: scale(1.2) rotate(5deg);
+            filter: drop-shadow(0 0 10px currentColor);
+        }
+
+        .faction-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--primary);
+            transition: all 0.4s ease;
+        }
+
+        .faction-card:hover .faction-title {
+            color: var(--accent);
+            text-shadow: 0 0 15px var(--accent);
+        }
+
+        .faction-description {
+            text-align: center;
+            color: #ccccff;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+        }
+
+        .faction-card:hover .faction-description {
+            color: #ffffff;
+        }
+
+        /* BOTÓN POSTULAR ÉPICO */
+        .postular-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn-robux {
-            background: linear-gradient(45deg, #ff4444, #ff8800);
-            color: white;
-        }
-
-        .btn-normas {
-            background: linear-gradient(45deg, var(--accent), #00ccff);
-            color: white;
-        }
-
-        .btn::before {
+        .postular-btn::before {
             content: '';
             position: absolute;
             top: 0;
@@ -387,251 +246,187 @@
             transition: left 0.6s ease;
         }
 
-        .btn:hover::before {
+        .postular-btn:hover::before {
             left: 100%;
         }
 
-        .btn:hover {
-            transform: translateY(-8px) scale(1.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            filter: brightness(1.2);
+        .postular-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.5);
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
         }
 
-        /* SECCIONES MEGA ÉPICAS CON EFECTO DE COLOR */
-        .section {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 60px 40px;
-            margin: 50px auto;
-            max-width: 1100px;
-            border: 2px solid transparent;
-            box-shadow: 0 20px 50px rgba(0, 255, 255, 0.2);
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
+        /* COLORES ESPECÍFICOS PARA CADA FACCIÓN */
+        .carabineros {
+            border-color: #0066cc;
         }
 
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-            transform: scaleX(0);
-            transition: transform 0.8s ease;
+        .carabineros .faction-icon {
+            color: #0066cc;
         }
 
-        .section:hover::before {
-            transform: scaleX(1);
+        .carabineros .postular-btn {
+            background: linear-gradient(45deg, #0066cc, #0099ff);
         }
 
-        .section:hover {
-            border-color: var(--primary);
-            box-shadow: 0 30px 70px rgba(0, 255, 255, 0.4);
-            transform: translateY(-10px) scale(1.02);
-            background: rgba(255, 255, 255, 0.08);
+        .pdi {
+            border-color: #ff6600;
         }
 
-        /* EFECTO ESPECIAL AL TOCAR - CAMBIA COLOR DE FONDO */
-        .section:active {
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
-            transform: scale(0.98);
-            transition: all 0.1s ease;
+        .pdi .faction-icon {
+            color: #ff6600;
         }
 
-        .section h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.4s ease;
+        .pdi .postular-btn {
+            background: linear-gradient(45deg, #ff6600, #ff9900);
         }
 
-        .section:hover h2 {
-            color: var(--primary);
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+        .samu {
+            border-color: #ff4444;
         }
 
-        .section-content {
-            color: #ccccff;
-            line-height: 1.6;
-            font-size: 1.1rem;
-            transition: all 0.4s ease;
+        .samu .faction-icon {
+            color: #ff4444;
         }
 
-        .section:hover .section-content {
-            color: #ffffff;
+        .samu .postular-btn {
+            background: linear-gradient(45deg, #ff4444, #ff6666);
         }
 
-        /* LOADING BAR */
-        .loading-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-            z-index: 1001;
-            transition: width 0.3s ease;
-            box-shadow: 0 0 10px var(--primary);
+        .bomberos {
+            border-color: #ff3300;
+        }
+
+        .bomberos .faction-icon {
+            color: #ff3300;
+        }
+
+        .bomberos .postular-btn {
+            background: linear-gradient(45deg, #ff3300, #ff6600);
+        }
+
+        .fiscalia {
+            border-color: #9933cc;
+        }
+
+        .fiscalia .faction-icon {
+            color: #9933cc;
+        }
+
+        .fiscalia .postular-btn {
+            background: linear-gradient(45deg, #9933cc, #cc66ff);
+        }
+
+        /* EFECTO DE ACTIVACIÓN AL TOCAR */
+        .faction-card.active {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.15));
+            border-color: var(--accent);
+            box-shadow: 0 0 40px var(--accent);
         }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .nav-menu {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
-
-            .hero-title {
+            .section-title {
                 font-size: 2.5rem;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
+            .factions-grid {
+                grid-template-columns: 1fr;
             }
 
-            .btn {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
+            .faction-card {
+                padding: 25px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- CURSOR PERSONALIZADO -->
-    <div class="custom-cursor" id="customCursor">
-        <div class="cursor-dot"></div>
-        <div class="cursor-ring"></div>
-        <div class="cursor-trail"></div>
-    </div>
-
-    <!-- LOADING BAR -->
-    <div class="loading-bar" id="loadingBar"></div>
-
     <!-- FONDO ANIMADO -->
     <div class="background-animation"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- BARRA DE NAVEGACIÓN -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="https://cdn-icons-png.flaticon.com/512/2331/2331961.png" alt="Logo Chilenos RP" class="logo-img">
-                <div class="logo-text">CHILENOS RP ER:LC</div>
-            </div>
-            
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#inicio" class="nav-link">INICIO</a></li>
-                <li class="nav-item"><a href="#normas" class="nav-link">NORMATIVAS</a></li>
-                <li class="nav-item"><a href="#pases" class="nav-link">PASES</a></li>
-                <li class="nav-item"><a href="#robux" class="nav-link">RUBUX</a></li>
-                <li class="nav-item"><a href="#discord" class="nav-link">DISCORIO</a></li>
-                <li class="nav-item"><a href="#staff" class="nav-link">STAFF</a></li>
-                <li class="nav-item"><a href="#galeria" class="nav-link">GALERÍA</a></li>
-            </ul>
-        </div>
-    </nav>
-
     <!-- CONTENIDO PRINCIPAL -->
     <main class="main-content">
-        <!-- HERO SECTION -->
-        <section class="hero-section" id="inicio">
-            <h1 class="hero-title">CHILENOS RP ER:LC</h1>
-            <p class="hero-subtitle">Liberty County - El mejor servidor de roleplay chileno</p>
-            <p class="hero-description">Únete a nuestra comunidad y vive la experiencia más épica de roleplay</p>
-            
-            <div class="cta-buttons">
-                <a href="#" class="btn btn-robux">
-                    <i class="fas fa-gem"></i> COMPRAR PASES
+        <h1 class="section-title">FACCIONES LEGALES</h1>
+        
+        <div class="factions-grid">
+            <!-- CARABINEROS -->
+            <div class="faction-card carabineros">
+                <div class="faction-icon">
+                    <i class="fas fa-police-car"></i>
+                </div>
+                <h2 class="faction-title">CARABINEROS</h2>
+                <p class="faction-description">
+                    Mantén el orden y la seguridad en las calles de Chile. Protege a los ciudadanos y haz cumplir la ley con honor y disciplina.
+                </p>
+                <a href="https://discord.gg/TU_LINK_CARABINEROS" class="postular-btn" target="_blank">
+                    POSTULAR
                 </a>
-                <a href="#normas" class="btn btn-normas">
-                    <i class="fas fa-scroll"></i> VER NORMATIVAS
+            </div>
+
+            <!-- PDI -->
+            <div class="faction-card pdi">
+                <div class="faction-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h2 class="faction-title">PDI</h2>
+                <p class="faction-description">
+                    Investiga crímenes y resuelve los casos más complejos. Desentraña misterios y busca la verdad mediante la investigación.
+                </p>
+                <a href="https://discord.gg/TU_LINK_PDI" class="postular-btn" target="_blank">
+                    POSTULAR
                 </a>
             </div>
-        </section>
 
-        <!-- SECCIÓN NORMAS -->
-        <section class="section" id="normas">
-            <h2>NORMATIVAS DEL SERVIDOR</h2>
-            <div class="section-content">
-                <p>Conoce todas las reglas y normativas de nuestra comunidad. Respeto, fair play y diversión asegurada.</p>
+            <!-- SAMU -->
+            <div class="faction-card samu">
+                <div class="faction-icon">
+                    <i class="fas fa-ambulance"></i>
+                </div>
+                <h2 class="faction-title">SAMU</h2>
+                <p class="faction-description">
+                    Servicio de Atención Médica de Urgencias. Proporciona cuidados médicos especializados en situaciones críticas y salva vidas.
+                </p>
+                <a href="https://discord.gg/TU_LINK_SAMU" class="postular-btn" target="_blank">
+                    POSTULAR
+                </a>
             </div>
-        </section>
 
-        <!-- SECCIÓN COMISERÍA VIRTUAL -->
-        <section class="section" id="comiseria">
-            <h2>COMISERÍA VIRTUAL - CARABINEROS</h2>
-            <div class="section-content">
-                <p>Únete a la fuerza policial y mantén el orden en las calles. Procedimientos realistas y operativos épicos.</p>
+            <!-- BOMBEROS -->
+            <div class="faction-card bomberos">
+                <div class="faction-icon">
+                    <i class="fas fa-fire-extinguisher"></i>
+                </div>
+                <h2 class="faction-title">BOMBEROS</h2>
+                <p class="faction-description">
+                    Combate incendios y rescata ciudadanos en peligro. Sé un héroe en las situaciones más extremas y de alto riesgo.
+                </p>
+                <a href="https://discord.gg/TU_LINK_BOMBEROS" class="postular-btn" target="_blank">
+                    POSTULAR
+                </a>
             </div>
-        </section>
 
-        <!-- SECCIÓN CONCEPTO ROLEPLAY -->
-        <section class="section" id="concepto">
-            <h2>CONCEPTO ROLEPLAY</h2>
-            <div class="section-content">
-                <p>Sumérgete en un roleplay de calidad con sistemas avanzados y experiencias inmersivas.</p>
+            <!-- FISCALÍA -->
+            <div class="faction-card fiscalia">
+                <div class="faction-icon">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <h2 class="faction-title">FISCALÍA</h2>
+                <p class="faction-description">
+                    Administra la justicia y procesa casos legales. Representa al estado en procesos judiciales importantes y complejos.
+                </p>
+                <a href="https://discord.gg/TU_LINK_FISCALIA" class="postular-btn" target="_blank">
+                    POSTULAR
+                </a>
             </div>
-        </section>
-
-        <!-- SECCIÓN VIPS -->
-        <section class="section" id="vips">
-            <h2>VIPS Y BENEFICIOS</h2>
-            <div class="section-content">
-                <p>Accede a beneficios exclusivos, vehículos especiales y ventajas únicas en el servidor.</p>
-            </div>
-        </section>
-
-        <!-- SECCIÓN FACCIONES -->
-        <section class="section" id="facciones">
-            <h2>FACCIONES LEGALES</h2>
-            <div class="section-content">
-                <p>Forma parte de carabineros, servicios médicos o el sistema judicial. ¡Elige tu camino!</p>
-            </div>
-        </section>
-
+        </div>
     </main>
 
     <script>
-        // CURSOR PERSONALIZADO FUNCIONAL
-        const cursor = document.getElementById('customCursor');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Efecto hover en elementos interactivos
-        const interactiveElements = document.querySelectorAll('a, button, .nav-link, .btn, .section');
-        
-        interactiveElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.classList.add('cursor-hover');
-            });
-            
-            element.addEventListener('mouseleave', () => {
-                cursor.classList.remove('cursor-hover');
-            });
-        });
-
         // CREAR PARTÍCULAS
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+            const particleCount = 60;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -645,70 +440,93 @@
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 
-                const colors = ['#00ffff', '#ff00ff', '#00ff88', '#0080ff'];
+                const colors = ['#00ffff', '#ff00ff', '#00ff88', '#0080ff', '#ff4444'];
                 particle.style.background = colors[Math.floor(Math.random() * colors.length)];
                 
                 particlesContainer.appendChild(particle);
             }
         }
 
-        // LOADING BAR AL SCROLL
-        function updateLoadingBar() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("loadingBar").style.width = scrolled + "%";
-        }
-
-        // NAVBAR SCROLL EFFECT
-        function handleNavbarScroll() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        }
-
-        // INICIALIZAR
+        // EFECTO AL TOCAR LAS FACCIONES
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
+
+            const factionCards = document.querySelectorAll('.faction-card');
             
-            window.addEventListener('scroll', function() {
-                updateLoadingBar();
-                handleNavbarScroll();
+            factionCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remover clase active de todas las tarjetas
+                    factionCards.forEach(c => c.classList.remove('active'));
+                    
+                    // Agregar clase active a la tarjeta clickeada
+                    this.classList.add('active');
+                    
+                    // Efecto de sonido (opcional)
+                    // const clickSound = new Audio('click-sound.mp3');
+                    // clickSound.play();
+                    
+                    // Remover la clase active después de 1 segundo
+                    setTimeout(() => {
+                        this.classList.remove('active');
+                    }, 1000);
+                });
             });
 
-            // Efecto especial para secciones al hacer clic
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.addEventListener('click', function() {
-                    this.style.background = 'linear-gradient(135deg, rgba(0, 255, 255, 0.15), rgba(255, 0, 255, 0.1))';
-                    this.style.borderColor = 'var(--accent)';
-                    
-                    setTimeout(() => {
-                        this.style.background = '';
-                        this.style.borderColor = '';
-                    }, 500);
-                });
+            // Efecto de escritura para el título
+            const title = document.querySelector('.section-title');
+            const originalText = title.textContent;
+            title.textContent = '';
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < originalText.length) {
+                    title.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            
+            setTimeout(typeWriter, 500);
+        });
+
+        // EFECTO DE PARTICULAS AL PASAR MOUSE SOBRE FACCIONES
+        const factionCards = document.querySelectorAll('.faction-card');
+        
+        factionCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                // Crear partículas adicionales al hacer hover
+                createHoverParticles(this);
             });
         });
 
-        // EFECTO DE ESCRITURA PARA EL TÍTULO
-        const title = document.querySelector('.hero-title');
-        const originalText = title.textContent;
-        title.textContent = '';
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < originalText.length) {
-                title.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
+        function createHoverParticles(element) {
+            const rect = element.getBoundingClientRect();
+            const particlesContainer = document.getElementById('particles');
+            
+            for (let i = 0; i < 5; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.position = 'fixed';
+                particle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                particle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                particle.style.animation = 'floatParticle 3s ease-out forwards';
+                particle.style.animationDelay = '0s';
+                
+                const size = 2 + Math.random() * 3;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                const colors = ['#00ffff', '#ff00ff', '#00ff88'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
+                
+                // Remover partícula después de la animación
+                setTimeout(() => {
+                    particle.remove();
+                }, 3000);
             }
         }
-        
-        setTimeout(typeWriter, 1000);
     </script>
 </body>
 </html>
