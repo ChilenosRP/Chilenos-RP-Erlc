@@ -213,6 +213,13 @@
             box-shadow: 0 10px 25px rgba(0, 255, 255, 0.4);
         }
 
+        /* EFECTO ACTIVO PARA ENLACES DE NAVEGACIÓN */
+        .nav-link.active {
+            color: var(--primary);
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+        }
+
         /* CONTENIDO PRINCIPAL */
         .main-content {
             margin-top: 120px;
@@ -229,6 +236,14 @@
             border: 2px solid rgba(0, 255, 255, 0.5);
             box-shadow: 0 25px 70px rgba(0, 255, 255, 0.4);
             animation: heroFloat 8s ease-in-out infinite;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         @keyframes heroFloat {
@@ -348,6 +363,13 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .faction-card.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .faction-card:hover {
@@ -444,6 +466,13 @@
             border-radius: 15px;
             border: 1px solid rgba(0, 255, 255, 0.3);
             transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .norma-card.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .norma-card:hover {
@@ -476,6 +505,13 @@
             border: 2px solid transparent;
             text-align: center;
             transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .pase-card.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .pase-card:hover {
@@ -582,7 +618,7 @@
             </div>
             
             <ul class="nav-menu">
-                <li class="nav-item"><a href="#inicio" class="nav-link">INICIO</a></li>
+                <li class="nav-item"><a href="#inicio" class="nav-link active">INICIO</a></li>
                 <li class="nav-item"><a href="#normas" class="nav-link">NORMAS</a></li>
                 <li class="nav-item"><a href="#facciones" class="nav-link">FACCIONES</a></li>
                 <li class="nav-item"><a href="#pases" class="nav-link">PASES</a></li>
@@ -596,7 +632,7 @@
     <!-- CONTENIDO PRINCIPAL -->
     <main class="main-content">
         <!-- SECCIÓN INICIO -->
-        <section class="section" id="inicio">
+        <section class="section visible" id="inicio">
             <h1 class="section-title">CHILENOS RP ER:LC</h1>
             <p class="section-subtitle">Liberty County - El mejor servidor de roleplay chileno</p>
             <p class="section-description">Únete a nuestra comunidad y vive la experiencia más épica de roleplay</p>
@@ -835,6 +871,55 @@
             }
         }
 
+        // ANIMACIONES AL SCROLL
+        function handleScrollAnimations() {
+            const sections = document.querySelectorAll('.section');
+            const cards = document.querySelectorAll('.faction-card, .norma-card, .pase-card');
+            
+            // Animar secciones
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.85) {
+                    section.classList.add('visible');
+                }
+            });
+            
+            // Animar tarjetas
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (cardTop < windowHeight * 0.85) {
+                    card.classList.add('animated');
+                }
+            });
+        }
+
+        // CAMBIAR ENLACE ACTIVO EN NAVEGACIÓN
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
         // INICIALIZAR
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
@@ -842,6 +927,8 @@
             window.addEventListener('scroll', function() {
                 updateLoadingBar();
                 handleNavbarScroll();
+                handleScrollAnimations();
+                updateActiveNavLink();
             });
 
             // Efecto de escritura para el título principal
@@ -859,6 +946,9 @@
             }
             
             setTimeout(typeWriter, 500);
+            
+            // Animar elementos iniciales
+            handleScrollAnimations();
         });
     </script>
 </body>
