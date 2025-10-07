@@ -1432,6 +1432,152 @@
             z-index: -1;
             pointer-events: none;
         }
+
+        /* NUEVA SECCIÓN COMISARÍA VIRTUAL */
+        .comisaria-section {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(30px);
+            border-radius: 30px;
+            padding: 70px 40px;
+            margin: 0 auto 60px auto;
+            max-width: 1200px;
+            border: 2px solid #0066cc;
+            box-shadow: 0 25px 70px rgba(0, 102, 204, 0.4);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .comisaria-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .comisaria-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, #0066cc, #003366, #00aaff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;
+            animation: gradientFlow 3s ease infinite;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .comisaria-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .comisaria-logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #0066cc;
+            box-shadow: 0 0 40px rgba(0, 102, 204, 0.8);
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .comisaria-logo i {
+            font-size: 5rem;
+            color: #0066cc;
+        }
+
+        .comisaria-description {
+            font-size: 1.3rem;
+            text-align: center;
+            color: #aaccff;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        .comisaria-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            width: 100%;
+            margin: 30px 0;
+        }
+
+        .comisaria-feature {
+            background: rgba(0, 102, 204, 0.1);
+            border: 2px solid rgba(0, 102, 204, 0.5);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .comisaria-feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 102, 204, 0.4);
+            border-color: #0066cc;
+        }
+
+        .comisaria-feature i {
+            font-size: 2.5rem;
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        .comisaria-feature h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #00aaff;
+        }
+
+        .comisaria-btn {
+            padding: 18px 35px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #0066cc, #00aaff);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.5);
+            cursor: none;
+            margin-top: 20px;
+        }
+
+        .comisaria-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .comisaria-btn:hover::before {
+            left: 100%;
+        }
+
+        .comisaria-btn:hover {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 20px 40px rgba(0, 102, 204, 0.7);
+            filter: brightness(1.2);
+        }
     </style>
 </head>
 <body>
@@ -1694,6 +1840,7 @@
                 <li class="nav-item"><a href="#inicio" class="nav-link active">INICIO</a></li>
                 <li class="nav-item"><a href="#normas" class="nav-link">NORMAS</a></li>
                 <li class="nav-item"><a href="#facciones" class="nav-link">FACCIONES</a></li>
+                <li class="nav-item"><a href="#comisaria-virtual" class="nav-link">COMISARÍA VIRTUAL</a></li>
                 <li class="nav-item"><a href="#vips" class="nav-link">VIPS</a></li>
                 <li class="nav-item"><a href="#beneficios-booster" class="nav-link">BENEFICIOS BOOSTER</a></li>
                 <li class="nav-item"><a href="#staff" class="nav-link">STAFF</a></li>
@@ -1808,6 +1955,53 @@
                         POSTULAR
                     </button>
                 </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN COMISARÍA VIRTUAL -->
+        <section class="comisaria-section" id="comisaria-virtual">
+            <h2 class="comisaria-title">COMISARÍA VIRTUAL</h2>
+            <p class="section-subtitle">Sistema de gestión policial integrado</p>
+            
+            <div class="comisaria-content">
+                <div class="comisaria-logo">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                
+                <p class="comisaria-description">
+                    La Comisaría Virtual de Chilenos RP es nuestro sistema integrado de gestión policial. 
+                    Accede a herramientas exclusivas para miembros de Carabineros y mantén el orden en Liberty County.
+                </p>
+                
+                <div class="comisaria-features">
+                    <div class="comisaria-feature">
+                        <i class="fas fa-database"></i>
+                        <h3>Base de Datos</h3>
+                        <p>Acceso completo a registros criminales y antecedentes</p>
+                    </div>
+                    
+                    <div class="comisaria-feature">
+                        <i class="fas fa-car"></i>
+                        <h3>Control Vehicular</h3>
+                        <p>Sistema de verificación de vehículos y multas</p>
+                    </div>
+                    
+                    <div class="comisaria-feature">
+                        <i class="fas fa-user-tag"></i>
+                        <h3>Identificación</h3>
+                        <p>Herramientas para identificación de ciudadanos</p>
+                    </div>
+                    
+                    <div class="comisaria-feature">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h3>Reportes</h3>
+                        <p>Sistema de reportes y seguimiento de casos</p>
+                    </div>
+                </div>
+                
+                <a href="https://comisaria.chilenosrp.com" class="comisaria-btn" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> ACCEDER A COMISARÍA VIRTUAL
+                </a>
             </div>
         </section>
 
@@ -2448,8 +2642,8 @@
 
         // ANIMACIONES AL SCROLL
         function handleScrollAnimations() {
-            const sections = document.querySelectorAll('.section');
-            const cards = document.querySelectorAll('.faction-card, .norma-card, .vip-card, .booster-item, .staff-card');
+            const sections = document.querySelectorAll('.section, .comisaria-section');
+            const cards = document.querySelectorAll('.faction-card, .norma-card, .vip-card, .booster-item, .staff-card, .comisaria-feature');
             
             sections.forEach(section => {
                 const sectionTop = section.getBoundingClientRect().top;
@@ -2474,7 +2668,7 @@
 
         // CAMBIAR ENLACE ACTIVO EN NAVEGACIÓN
         function updateActiveNavLink() {
-            const sections = document.querySelectorAll('.section');
+            const sections = document.querySelectorAll('.section, .comisaria-section');
             const navLinks = document.querySelectorAll('.nav-link');
             
             let currentSection = '';
